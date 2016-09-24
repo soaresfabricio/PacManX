@@ -32,7 +32,7 @@ public:
         // Já que estamos usando Double Buffering
         glutSwapBuffers();
         
-    }
+    };
     
     static void teclaPressionada(unsigned char tecla, int x, int y){
         
@@ -42,12 +42,29 @@ public:
             exit(0);
         }
         
-    }
+    };
     
     static void iniciaGL(int largura, int altura){
         
-        // carregar o fluxo do jogo aqui
+        //TODO: carregar o fluxo do jogo aqui
+        
         glClearColor(0.0, 0.0, 0.0, 0.5);
-    }
+
+        glEnable (GL_BLEND);
+        glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
+        glClearDepth(1.0);
+        glDepthFunc(GL_LESS);
+        glEnable(GL_DEPTH_TEST);
+        glShadeModel(GL_SMOOTH);
+        
+        glLoadIdentity();
+        
+        gluPerspective(45.0f, (GLfloat)largura/(GLfloat)altura, 0.1f, 100.0f); // Calculate the aspect ratio of the window
+        
+        glMatrixMode(GL_MODELVIEW);
+
+        
+    };
     
 };
