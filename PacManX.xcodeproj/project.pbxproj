@@ -12,8 +12,8 @@
 		7F42996D1D971669004F7D01 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996C1D971669004F7D01 /* OpenGL.framework */; };
 		7F42996E1D971696004F7D01 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4299681D97165B004F7D01 /* Cocoa.framework */; };
 		7FB874A41D9752C400C11D34 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4299641D971204004F7D01 /* game.cpp */; };
-		7FB874A51D9752C400C11D34 /* tabuleiro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB8749E1D973C7300C11D34 /* tabuleiro.cpp */; };
 		7FB874A61D9752C400C11D34 /* jogador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB874A11D97461100C11D34 /* jogador.cpp */; };
+		7FB874A91D9789CD00C11D34 /* ladrilho.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB874A71D9789CD00C11D34 /* ladrilho.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +41,8 @@
 		7FB8749F1D973C7300C11D34 /* tabuleiro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tabuleiro.hpp; sourceTree = "<group>"; };
 		7FB874A11D97461100C11D34 /* jogador.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = jogador.cpp; sourceTree = "<group>"; };
 		7FB874A21D97461100C11D34 /* jogador.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = jogador.hpp; sourceTree = "<group>"; };
+		7FB874A71D9789CD00C11D34 /* ladrilho.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ladrilho.cpp; sourceTree = "<group>"; };
+		7FB874A81D9789CD00C11D34 /* ladrilho.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ladrilho.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,8 @@
 				7FB8749F1D973C7300C11D34 /* tabuleiro.hpp */,
 				7FB874A11D97461100C11D34 /* jogador.cpp */,
 				7FB874A21D97461100C11D34 /* jogador.hpp */,
+				7FB874A71D9789CD00C11D34 /* ladrilho.cpp */,
+				7FB874A81D9789CD00C11D34 /* ladrilho.hpp */,
 			);
 			path = PacManX;
 			sourceTree = "<group>";
@@ -157,7 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FB874A41D9752C400C11D34 /* game.cpp in Sources */,
-				7FB874A51D9752C400C11D34 /* tabuleiro.cpp in Sources */,
+				7FB874A91D9789CD00C11D34 /* ladrilho.cpp in Sources */,
 				7FB874A61D9752C400C11D34 /* jogador.cpp in Sources */,
 				7F42995C1D970ADF004F7D01 /* main.cpp in Sources */,
 			);

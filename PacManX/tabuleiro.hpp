@@ -18,6 +18,11 @@ class tabuleiro {
     
     int altura, largura;
     
+    float * pixels[28][31];
+    float pixelsCores[28][31];
+
+
+    
     void criar();
     void desenhaParede();
     
