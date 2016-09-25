@@ -11,6 +11,9 @@
 		7F42996B1D971664004F7D01 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996A1D971664004F7D01 /* GLUT.framework */; };
 		7F42996D1D971669004F7D01 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996C1D971669004F7D01 /* OpenGL.framework */; };
 		7F42996E1D971696004F7D01 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4299681D97165B004F7D01 /* Cocoa.framework */; };
+		7FB874A41D9752C400C11D34 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4299641D971204004F7D01 /* game.cpp */; };
+		7FB874A51D9752C400C11D34 /* tabuleiro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB8749E1D973C7300C11D34 /* tabuleiro.cpp */; };
+		7FB874A61D9752C400C11D34 /* jogador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB874A11D97461100C11D34 /* jogador.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +37,10 @@
 		7F4299681D97165B004F7D01 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7F42996A1D971664004F7D01 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		7F42996C1D971669004F7D01 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		7FB8749E1D973C7300C11D34 /* tabuleiro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tabuleiro.cpp; sourceTree = "<group>"; };
+		7FB8749F1D973C7300C11D34 /* tabuleiro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tabuleiro.hpp; sourceTree = "<group>"; };
+		7FB874A11D97461100C11D34 /* jogador.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = jogador.cpp; sourceTree = "<group>"; };
+		7FB874A21D97461100C11D34 /* jogador.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = jogador.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +81,10 @@
 				7F4299621D9710A9004F7D01 /* processador.cpp */,
 				7F4299641D971204004F7D01 /* game.cpp */,
 				7F4299651D971204004F7D01 /* game.hpp */,
+				7FB8749E1D973C7300C11D34 /* tabuleiro.cpp */,
+				7FB8749F1D973C7300C11D34 /* tabuleiro.hpp */,
+				7FB874A11D97461100C11D34 /* jogador.cpp */,
+				7FB874A21D97461100C11D34 /* jogador.hpp */,
 			);
 			path = PacManX;
 			sourceTree = "<group>";
@@ -145,6 +156,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB874A41D9752C400C11D34 /* game.cpp in Sources */,
+				7FB874A51D9752C400C11D34 /* tabuleiro.cpp in Sources */,
+				7FB874A61D9752C400C11D34 /* jogador.cpp in Sources */,
 				7F42995C1D970ADF004F7D01 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,7 +256,30 @@
 		7F4299601D970ADF004F7D01 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = "/usr/local/Cellar/imagemagick/6.9.5-10/**";
+				LIBRARY_SEARCH_PATHS = "/opt/local/lib\n\n";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = (
+					"-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-I/usr/local/Cellar/imagemagick/6.9.5-10/include/ImageMagick-6\n-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-I/usr/local/Cellar/imagemagick/6.9.5-10/include/ImageMagick-6\n-L/usr/local/Cellar/imagemagick/6.9.5-10/lib",
+					"-lMagick++-6.Q16",
+					"-lMagickWand-6.Q16",
+					"-lMagickCore-6.Q16\n-L/usr/local/Cellar/imagemagick/6.9.5-10/lib",
+					"-lMagick++-6.Q16",
+					"-lMagickWand-6.Q16",
+					"-lMagickCore-6.Q16\n\n",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -250,7 +287,30 @@
 		7F4299611D970ADF004F7D01 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = "/usr/local/Cellar/imagemagick/6.9.5-10/**";
+				LIBRARY_SEARCH_PATHS = "/opt/local/lib\n\n";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = (
+					"-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-I/usr/local/Cellar/imagemagick/6.9.5-10/include/ImageMagick-6\n-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-DMAGICKCORE_HDRI_ENABLE=0",
+					"-DMAGICKCORE_QUANTUM_DEPTH=16",
+					"-I/usr/local/Cellar/imagemagick/6.9.5-10/include/ImageMagick-6\n-L/usr/local/Cellar/imagemagick/6.9.5-10/lib",
+					"-lMagick++-6.Q16",
+					"-lMagickWand-6.Q16",
+					"-lMagickCore-6.Q16\n-L/usr/local/Cellar/imagemagick/6.9.5-10/lib",
+					"-lMagick++-6.Q16",
+					"-lMagickWand-6.Q16",
+					"-lMagickCore-6.Q16\n\n",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -10,5 +10,20 @@
 #define game_hpp
 
 #include <stdio.h>
+#include "tabuleiro.hpp"
+#include "jogador.hpp"
+
+class game {
+    tabuleiro L;
+    jogador J;
+    
+    bool pausado;
+    
+public:
+    void carregar();
+    tabuleiro getLabirinto();
+    void processa();
+    bool ehPausado();
+};
 
 #endif /* game_hpp */

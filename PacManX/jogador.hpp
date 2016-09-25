@@ -1,15 +1,22 @@
-
 //
-//  game.cpp
+//  jogador.hpp
 //  PacManX
 //
 //  Created by Fabrício Soares on 24/09/16.
 //  Copyright © 2016 Fabrício, Yooh e Wesnydy. All rights reserved.
 //
 
-#include "game.hpp"
+#ifndef jogador_hpp
+#define jogador_hpp
 
-void game::carregar(){
+#include <stdio.h>
 
+class jogador {
     
-}
+    
+public:
+    
+};
+
+
+#endif /* jogador_hpp */
