@@ -1,5 +1,6 @@
 #pragma once
 
+// Estados válido de direção
 enum DIRECAO {
     nenhuma,
     cima,

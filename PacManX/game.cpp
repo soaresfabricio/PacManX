@@ -10,17 +10,14 @@
 #include "game.hpp"
 
 void game::carregar(){
-
     
+    t.carrega();
+
 }
 
-
-void game::processa(){
-    
-    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-    
-    gluLookAt (0, -20, 18, 0, -2, 10, 0.0, 1.0, 0.0);
+void game::iluminaCena(){
     glEnable ( GL_LIGHTING ) ;
+    
     GLfloat position[] = { 0.5, -0.5, 1, 0};
     glLightfv(GL_LIGHT0, GL_POSITION, position);
     
@@ -41,11 +38,25 @@ void game::processa(){
     
     glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE ) ;
     glEnable ( GL_COLOR_MATERIAL ) ;
-    
-    
-    tabuleiro.processa();
-    
+}
 
+void game::processa(){
+    
+    
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+
+    gluLookAt (0, -20, 18, 0, -2, -20, 0.0, 1.0, 0.0);
+    
+    iluminaCena();
+    
+    
+    // glutSolidSphere(2,20,20);
+    
+    //jogador.processa();
+    
+    // processador inimigos
+    
+    t.processa();
     
     glLoadIdentity();
 

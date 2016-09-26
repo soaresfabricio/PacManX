@@ -11,39 +11,34 @@
 #  include <GL/glut.h>
 #endif
 
-#include <stdlib.h>
-#include "game.hpp"
+#include <iostream>
+#include <ctime>
+#include <math.h>
+#include <vector>
 
+#include <sys/time.h>
+#include <stdio.h>
+#include <unistd.h>
+
+#include "game.hpp"
 #include "direcao.hpp"
 
-
+// Tecla Esc
 #define ESCAPE 27
 
-
-
 int janela; // Número da janela GLUT
-game game;
-
+game g;
 
 class processador {
     
 public:
     
     static void desenha(){
-        
         glLoadIdentity();
-        
-        
-        //TODO: Mover para classe Game junto com as instruções de rendering
-        glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-        
-        
-        game.processa();
-        
-        
+        // Chama ciclo de processamento do jogo
+        g.processa();
         // Já que estamos usando Double Buffering
         glutSwapBuffers();
-        
     };
     
     static void teclaPressionada(unsigned char tecla, int x, int y){
@@ -56,12 +51,17 @@ public:
         
     };
     
+    static void teclaEspecial(int tecla, int x, int y){
+        
+    }
+    
     static void iniciaGL(int largura, int altura){
         
-        game.carregar();
+        g.carregar();
         
         glClearColor(0.0, 0.0, 0.0, 0.5);
 
+        
         glEnable (GL_BLEND);
         glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         
@@ -72,11 +72,22 @@ public:
         
         glLoadIdentity();
         
-        gluPerspective(45.0f, (GLfloat)largura/(GLfloat)altura, 0.1f, 100.0f);
-        
+        gluPerspective(45.0f, (GLfloat)largura / (GLfloat)altura, 0.1f, 100.0f);
         glMatrixMode(GL_MODELVIEW);
-
         
     };
+    
+    static void redesenha(int largura, int altura){
+        if (altura == 0)
+            altura = 1;
+        
+        glViewport(0, 0, largura, altura);
+        
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        
+        gluPerspective(45.0f, (GLfloat)largura / (GLfloat)altura, 0.1f, 100.0f);
+        glMatrixMode(GL_MODELVIEW);
+    }
     
 };

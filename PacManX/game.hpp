@@ -16,10 +16,13 @@
 #include "jogador.hpp"
 
 class game {
-    tabuleiro tabuleiro;
-    jogador jogador;
+    tabuleiro t;
+    jogador j;
     
     bool pausado;
+    
+protected:
+    void iluminaCena();
     
 public:
     void carregar();
