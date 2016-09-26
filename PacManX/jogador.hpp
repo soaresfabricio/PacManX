@@ -1,3 +1,4 @@
+#pragma once
 //
 //  jogador.hpp
 //  PacManX
@@ -9,7 +10,13 @@
 #ifndef jogador_hpp
 #define jogador_hpp
 
+#include <GLUT/glut.h>
+
+
 #include <stdio.h>
+#include "jogador.hpp"
+#include "direcao.hpp"
+#include "ladrilho.hpp"
 
 class jogador {
     

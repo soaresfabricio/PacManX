@@ -14,7 +14,6 @@
 #endif
 
 #include <iostream>
-
 #include "processador.cpp"
 
 int main(int argc, char * argv[]) {

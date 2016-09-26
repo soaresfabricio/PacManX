@@ -1,3 +1,5 @@
+#pragma once
+
 //
 //  game.hpp
 //  PacManX
@@ -14,14 +16,14 @@
 #include "jogador.hpp"
 
 class game {
-    tabuleiro L;
-    jogador J;
+    tabuleiro tabuleiro;
+    jogador jogador;
     
     bool pausado;
     
 public:
     void carregar();
-    tabuleiro getLabirinto();
+    class tabuleiro getTabuleiro();
     void processa();
     bool ehPausado();
 };

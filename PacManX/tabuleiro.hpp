@@ -1,3 +1,6 @@
+#pragma once
+
+
 //
 //  tabuleiro.hpp
 //  PacManX
@@ -5,14 +8,15 @@
 //  Created by Fabrício Soares on 24/09/16.
 //  Copyright © 2016 Fabrício, Yooh e Wesnydy. All rights reserved.
 //
+#include <GLUT/glut.h>
 
-#ifndef tabuleiro_hpp
-#define tabuleiro_hpp
 
 #include <Magick++.h>
-
-
 #include <stdio.h>
+
+#include "jogador.hpp"
+
+#include "ladrilho.hpp"
 
 class tabuleiro {
     
@@ -20,11 +24,19 @@ class tabuleiro {
     
     float * pixels[28][31];
     float pixelsCores[28][31];
-
-
+    ladrilho ladrilhos[28][31];
+    jogador jogador;
+    std::map <const char *, int> vertices;
+    
+    GLuint tabuleiroDisplayList;
+    
+    bool ehParede(int x, int y);
     
     void criar();
-    void desenhaParede();
+    
+    void desenhaLinhas(float * cor, int x, int y, float pontoX, float pontoY);
+
+    void desenhaParede(int x, int y, float * cor);
     
     
     void desenhaCantos();
@@ -35,6 +47,5 @@ public:
     int getAltura();
     int getLargura();
     void processa();
+    float * getPixel(int x, int y);
 };
-
-#endif /* tabuleiro_hpp */

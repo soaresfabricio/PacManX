@@ -11,9 +11,10 @@
 		7F42996B1D971664004F7D01 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996A1D971664004F7D01 /* GLUT.framework */; };
 		7F42996D1D971669004F7D01 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996C1D971669004F7D01 /* OpenGL.framework */; };
 		7F42996E1D971696004F7D01 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4299681D97165B004F7D01 /* Cocoa.framework */; };
-		7FB874A41D9752C400C11D34 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4299641D971204004F7D01 /* game.cpp */; };
-		7FB874A61D9752C400C11D34 /* jogador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB874A11D97461100C11D34 /* jogador.cpp */; };
-		7FB874A91D9789CD00C11D34 /* ladrilho.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB874A71D9789CD00C11D34 /* ladrilho.cpp */; };
+		7FB874CB1D98A43400C11D34 /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4299641D971204004F7D01 /* game.cpp */; };
+		7FB874CC1D98A43A00C11D34 /* jogador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB874A11D97461100C11D34 /* jogador.cpp */; };
+		7FB874CD1D98A49E00C11D34 /* tabuleiro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB8749E1D973C7300C11D34 /* tabuleiro.cpp */; };
+		7FB874CE1D98A49E00C11D34 /* ladrilho.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB874A71D9789CD00C11D34 /* ladrilho.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,8 @@
 		7FB874A21D97461100C11D34 /* jogador.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = jogador.hpp; sourceTree = "<group>"; };
 		7FB874A71D9789CD00C11D34 /* ladrilho.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ladrilho.cpp; sourceTree = "<group>"; };
 		7FB874A81D9789CD00C11D34 /* ladrilho.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ladrilho.hpp; sourceTree = "<group>"; };
+		7FB874AA1D98320A00C11D34 /* mapa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapa.png; sourceTree = "<group>"; };
+		7FB874BD1D987F1400C11D34 /* direcao.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = direcao.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +82,7 @@
 		7F42995A1D970ADF004F7D01 /* PacManX */ = {
 			isa = PBXGroup;
 			children = (
+				7FB874AA1D98320A00C11D34 /* mapa.png */,
 				7F42995B1D970ADF004F7D01 /* main.cpp */,
 				7F4299621D9710A9004F7D01 /* processador.cpp */,
 				7F4299641D971204004F7D01 /* game.cpp */,
@@ -89,6 +93,7 @@
 				7FB874A21D97461100C11D34 /* jogador.hpp */,
 				7FB874A71D9789CD00C11D34 /* ladrilho.cpp */,
 				7FB874A81D9789CD00C11D34 /* ladrilho.hpp */,
+				7FB874BD1D987F1400C11D34 /* direcao.hpp */,
 			);
 			path = PacManX;
 			sourceTree = "<group>";
@@ -160,9 +165,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FB874A41D9752C400C11D34 /* game.cpp in Sources */,
-				7FB874A91D9789CD00C11D34 /* ladrilho.cpp in Sources */,
-				7FB874A61D9752C400C11D34 /* jogador.cpp in Sources */,
+				7FB874CD1D98A49E00C11D34 /* tabuleiro.cpp in Sources */,
+				7FB874CE1D98A49E00C11D34 /* ladrilho.cpp in Sources */,
+				7FB874CC1D98A43A00C11D34 /* jogador.cpp in Sources */,
+				7FB874CB1D98A43400C11D34 /* game.cpp in Sources */,
 				7F42995C1D970ADF004F7D01 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

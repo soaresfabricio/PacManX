@@ -12,10 +12,18 @@
 #endif
 
 #include <stdlib.h>
+#include "game.hpp"
+
+#include "direcao.hpp"
+
 
 #define ESCAPE 27
 
+
+
 int janela; // Número da janela GLUT
+game game;
+
 
 class processador {
     
@@ -28,6 +36,10 @@ public:
         
         //TODO: Mover para classe Game junto com as instruções de rendering
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+        
+        
+        game.processa();
+        
         
         // Já que estamos usando Double Buffering
         glutSwapBuffers();
@@ -46,7 +58,7 @@ public:
     
     static void iniciaGL(int largura, int altura){
         
-        //TODO: carregar o fluxo do jogo aqui
+        game.carregar();
         
         glClearColor(0.0, 0.0, 0.0, 0.5);
 
@@ -60,7 +72,7 @@ public:
         
         glLoadIdentity();
         
-        gluPerspective(45.0f, (GLfloat)largura/(GLfloat)altura, 0.1f, 100.0f); // Calculate the aspect ratio of the window
+        gluPerspective(45.0f, (GLfloat)largura/(GLfloat)altura, 0.1f, 100.0f);
         
         glMatrixMode(GL_MODELVIEW);
 
