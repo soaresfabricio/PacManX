@@ -26,6 +26,7 @@ public:
     }
 };
 
+
 struct posicao {
     int x;
     int y;

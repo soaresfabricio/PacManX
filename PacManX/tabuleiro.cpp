@@ -110,11 +110,19 @@ void tabuleiro::criar(){
 
 void tabuleiro::desenhaParede(int x, int y, float *cor){
     float pontoX = (float)x - largura/2;
-    float pontoY = (float)y - largura/2;
+    float pontoY = (float)y - altura/2;
     glColor4f(cor[0], cor[1], cor[2], 1.0);
     desenhaLinhas(cor,x,y,pontoX,pontoY);
 }
 
+/**
+ * Função responsável por traçar linhas correspondentes às parades do tabuleiro
+ * @param cor    
+ * @param x      [description]
+ * @param y      [description]
+ * @param pontoX [description]
+ * @param pontoY [description]
+ */
 void tabuleiro::desenhaLinhas(float *cor, int x, int y, float pontoX, float pontoY){
     glLineWidth(3.0);
     

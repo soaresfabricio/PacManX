@@ -20,8 +20,29 @@
 
 class jogador {
     
+private:
+    DIRECAO dir;
+    DIRECAO dirDesejada;
+    ladrilho * ladAtual;
+    float pos;
+    
+    void posiciona(float movimento);
     
 public:
+    
+    DIRECAO getDirecao();
+    void setDirecao(DIRECAO d);
+    DIRECAO getDirDesejada();
+    void setDirDesejada(DIRECAO d);
+    
+    void atualizaDirecao();
+    void processa(float ticks);
+    
+    ponto getPosicao();
+    void incrementaPosicao(float n);
+    
+    void setLadrilho(ladrilho * l);
+    ladrilho * getLadrilho();
     
 };
 
