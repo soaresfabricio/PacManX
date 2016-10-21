@@ -5,12 +5,6 @@
 //  Created by Fabrício Soares on 24/09/16.
 //  Copyright © 2016 Fabrício, Yooh e Wesnydy. All rights reserved.
 //
-#if defined(__APPLE__) && defined(__MACH__)
-#  include <GLUT/glut.h>
-#else
-#  include <GL/glut.h>
-#endif
-
 #include <iostream>
 #include <ctime>
 #include <math.h>
@@ -20,11 +14,14 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "game.hpp"
 #include "direcao.hpp"
+#include "Temporizador.cpp"
+#include "game.hpp"
 
 // Tecla Esc
 #define ESCAPE 27
+
+enum DIRECAO dir = nenhuma;
 
 int janela; // Número da janela GLUT
 game g;
@@ -32,14 +29,35 @@ game g;
 class processador {
 
 public:
+    
+    static int x;
+    static Temporizador temporizador;
+    static float ultimoClock;
+    
 
     /**
      * Função para iniciar o rendering do game.
      */
     static void desenha() {
+        
+        float agora = temporizador.getSegundos();
+        float ticks = agora - ultimoClock;
+        
+        bool pausado = g.ehPausado();
+        
+        if(pausado){
+            sleep(1);
+            ultimoClock = temporizador.getSegundos();
+            return;
+        }
+        
+    
+        ultimoClock = agora;
+        
+        
         glLoadIdentity();
         // Chama ciclo de processamento do jogo
-        g.processa();
+        g.processa(ticks);
         // Já que estamos usando Double Buffering
         glutSwapBuffers();
     };
@@ -52,7 +70,7 @@ public:
      */
     static void teclaPressionada(unsigned char tecla, int x, int y) {
 
-        //TODO: enviar teclas recebidas ao fluxo do jogo
+        g.teclaPressionada(tecla);
         if (tecla == ESCAPE) {
             glutDestroyWindow(janela);
             exit(0);
@@ -106,3 +124,6 @@ public:
     }
 
 };
+
+Temporizador processador::temporizador;
+float processador::ultimoClock;

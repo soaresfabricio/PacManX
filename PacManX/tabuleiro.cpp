@@ -1,4 +1,3 @@
-#pragma once
 //
 //  tabuleiro.cpp
 //  PacManX
@@ -6,16 +5,8 @@
 //  Created by Fabrício Soares on 24/09/16.
 //  Copyright © 2016 Fabrício, Yooh e Wesnydy. All rights reserved.
 //
-#include <GLUT/glut.h>
-#include <iostream>
-#include <Magick++.h>
-
-#include "jogador.hpp"
-#include "direcao.hpp"
-#include "ladrilho.hpp"
 
 #include "tabuleiro.hpp"
-
 
 /**
  * @description Carrega uma imagem e a mapeia num Vetor de 2 dimensões;
@@ -163,27 +154,25 @@ void tabuleiro::desenhaLinhas(float *cor, int x, int y, float pontoX, float pont
     done:;
 
     
-// Falta terminar
     
-//    glBegin(GL_QUADS);
-//    for (unsigned int i = 0; i < pontos.size(); i++) {
-//        ponto p = pontos[i];
-//        glColor4f (0, 0.0, 0.5, 0.7);
-//        glNormal3f(0, 0, 1);
-//        glVertex3f(p.x, p.y, z-0.02);
-//        std::cout << i << std::endl;
-//    }
-//    glEnd ();
-//    
-//    
-//    // Linhas mais finas
-//    glBegin (GL_LINE_STRIP);
-//    for (unsigned int i = 0; i < pontos.size() && i < 2; i++) {
-//        ponto p = pontos[i];
-//        glColor4f (0.0, 0.0, 1.0, 1.0);
-//        glVertex3f(p.x, p.y, z);
-//    }
-//    glEnd ();
+    glBegin(GL_QUADS);
+    for (unsigned int i = 0; i < pontos.size(); i++) {
+        ponto p = pontos[i];
+        glColor4f (0, 0.0, 0.5, 0.7);
+        glNormal3f(0, 0, 1);
+        glVertex3f(p.x, p.y, z-0.02);
+        std::cout << i << std::endl;
+    }
+    glEnd ();
+    
+    
+    glBegin (GL_LINE_STRIP);
+    for (unsigned int i = 0; i < pontos.size() && i < 2; i++) {
+        ponto p = pontos[i];
+        glColor4f (0.0, 0.0, 1.0, 1.0);
+        glVertex3f(p.x, p.y, z);
+    }
+    glEnd ();
     
     
 }
@@ -213,4 +202,9 @@ int tabuleiro::getLargura(){
 
 int tabuleiro::getAltura(){
     return altura;
+}
+
+
+ladrilho * tabuleiro::getLadrilho(int x, int y){
+    return &ladrilhos[x][y];
 }

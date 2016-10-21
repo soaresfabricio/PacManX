@@ -1,4 +1,7 @@
 #pragma once
+
+#define M_PI 3.14159265358979323846
+
 //
 //  jogador.hpp
 //  PacManX
@@ -12,11 +15,12 @@
 
 #include <GLUT/glut.h>
 
-
 #include <stdio.h>
-#include "jogador.hpp"
+#include <math.h>
 #include "direcao.hpp"
 #include "ladrilho.hpp"
+
+#include "jogador.hpp"
 
 class jogador {
     

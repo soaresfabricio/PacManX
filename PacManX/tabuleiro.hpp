@@ -1,5 +1,6 @@
 #pragma once
 
+#define PI 3.14159265358979323846
 
 //
 //  tabuleiro.hpp
@@ -17,12 +18,11 @@
 #include <math.h>
 
 #include <Magick++.h>
-#include <stdio.h>
 
 #include "jogador.hpp"
+#include "direcao.hpp"
 
 #include "ladrilho.hpp"
-#include "direcao.hpp"
 
 class tabuleiro {
     
@@ -82,4 +82,6 @@ public:
     int getLargura();
     void processa();
     float * getPixel(int x, int y);
+    
+    ladrilho * getLadrilho(int x, int y);
 };

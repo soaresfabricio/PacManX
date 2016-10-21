@@ -18,5 +18,6 @@ tabuleiro.o: tabuleiro.cpp
 ladrilho.o: ladrilho.cpp
 		$(CXX) $(CXXFLAGS) -c ladrilho.cpp
 
+
 clean:
 		rm *.o PacManX

@@ -77,7 +77,7 @@ void jogador::posiciona(float movimento){
 void jogador::processa(float ticks){
     
     // Configura uma certa velocidade
-    this->posiciona(ticks * 4.0);
+    this->posiciona(ticks * 8.0);
     
     ponto centro = ladAtual->getCentro();
     
@@ -104,10 +104,89 @@ void jogador::processa(float ticks){
             break;
     }
     
+    // tamanho do personagem
+    double raio = 0.7;
     
+    // triângulos que formam o personagem
+    int latitudes = 12;
+    int longitudes = 12;
     
+    float i, j;
     
+    glPushMatrix();
     
+    glTranslatef(centro.x, centro.y, -19.5);
+    glRotatef(90, 0, 1, 0);
     
+    switch (dir) {
+        case esquerda:
+            glRotatef(90, 1, 0, 0);
+            break;
+        case direita:
+            glRotatef(270, 1, 0, 0);
+            break;
+        case cima:
+            glRotatef(180, 1, 0, 0);
+            break;
+        case baixo:
+            glRotatef(0, 1 , 0, 0);
+            break;
+        case nenhuma:
+            glRotatef(0, 1, 0, 0);
+            break;
+        default:
+            break;
+    }
+    
+    // velocidade da boca
+    int limite = (int)(pos * 180 + 90) % 180;
+    if(limite > 90){
+        limite = 180 - limite;
+    }
+    
+    // Animação do personagem
+    
+    for (i = 1; i <= latitudes; i++) {
+        double lat0 = M_PI * (-0.5 + (double)(i-1) / latitudes );
+        double z0 = sin(lat0);
+        double zr0 = cos(lat0);
+        
+        double lat1 = M_PI * (-0.5 + (double)i / latitudes);
+        double z1 = sin(lat1);
+        double zr1 = cos(lat1);
+        
+        bool desenhado = false;
+        
+        float metadeLimite = limite / 2;
+        float m;
+        
+        
+        // Desenhando...
+        glBegin(GL_QUAD_STRIP);
+        for (j = 0; j <= 360; j += 360 / longitudes) {
+            
+            if (j <= 180 + 45 + metadeLimite || j >= 360 - 45 - metadeLimite) {
+                double lng = 2 * M_PI * (double) (j - 1) / 360;
+            
+                double x = cos(lng);
+                double y = sin(lng);
+                
+                glColor3f(1, 1, 0);
+                
+                
+                glVertex3f(raio * x * zr0, raio * y * zr0, raio * z0);
+                glVertex3f(raio * x * zr1, raio * y * zr1, raio * z1);
+            
+            } else if (!desenhado){
+                
+            }
+            
+        }
+        glEnd();
+        
+    }
+
+    glPopMatrix();
+
     
 }

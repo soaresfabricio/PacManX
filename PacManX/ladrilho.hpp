@@ -8,14 +8,11 @@
 //  Copyright © 2016 Fabrício, Yooh e Wesnydy. All rights reserved.
 //
 
-#include <iostream>
-#include <stdio.h>
-#include <math.h>
-
-
-
 #include <GLUT/glut.h>
 
+#include <iostream>
+#include <math.h>
+#include <stdio.h>
 #include <stdio.h>
 #include "direcao.hpp"
 

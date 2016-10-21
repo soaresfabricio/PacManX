@@ -12,6 +12,8 @@
 void game::carregar(){
     
     t.carrega();
+    
+    j.setLadrilho(t.getLadrilho(1, 1));
 
 }
 
@@ -40,19 +42,26 @@ void game::iluminaCena(){
     glEnable ( GL_COLOR_MATERIAL ) ;
 }
 
-void game::processa(){
-    
+void game::processa(float ticks){
     
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+    
+    tempo += ticks;
+    contador++;
+    
+    ponto posicaoJogador = j.getPosicao();
 
-    gluLookAt (0, -20, 18, 0, -2, -20, 0.0, 1.0, 0.0);
+    //gluLookAt (0, -20, 18, 0, -2, -20, 0.0, 1.0, 0.0);
+    
+    gluLookAt (posicaoJogador.x / 3.5, posicaoJogador.y - 16, -4, posicaoJogador.x / 3.5, posicaoJogador.y, posicaoJogador.z, 0.0, 1.0, 0.0);
+
     
     iluminaCena();
     
     
     // glutSolidSphere(2,20,20);
     
-    //jogador.processa();
+    j.processa(ticks);
     
     // processador inimigos
     
@@ -60,4 +69,32 @@ void game::processa(){
     
     glLoadIdentity();
 
+}
+
+void game::teclaPressionada(unsigned char tecla){
+    switch (tecla) {
+        case 'w':
+            j.setDirDesejada(cima);
+            break;
+        case 's':
+            j.setDirDesejada(baixo);
+            break;
+        case 'a':
+            j.setDirDesejada(esquerda);
+            break;
+        case 'd':
+            j.setDirDesejada(direita);
+            break;
+        case 'p':
+            pausado = !pausado;
+            break;
+    }
+    
+    if (pausado && tecla != 'p') {
+        pausado = false;
+    }
+}
+
+bool game::ehPausado(){
+    return pausado;
 }
