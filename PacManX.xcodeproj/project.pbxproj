@@ -19,6 +19,7 @@
 		7FC8BE311DCC0471005E864A /* Observador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8BE2F1DCC0471005E864A /* Observador.cpp */; };
 		7FC8BE341DCC05B4005E864A /* Eventos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8BE321DCC05B4005E864A /* Eventos.cpp */; };
 		7FC8BE3A1DCC1291005E864A /* VisaoJogador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8BE381DCC1291005E864A /* VisaoJogador.cpp */; };
+		7FF918E31DCC16C400EBB7FA /* Jogador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FF918E11DCC16C400EBB7FA /* Jogador.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +60,8 @@
 		7FC8BE361DCC1195005E864A /* headers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = headers.hpp; sourceTree = "<group>"; };
 		7FC8BE381DCC1291005E864A /* VisaoJogador.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VisaoJogador.cpp; sourceTree = "<group>"; };
 		7FC8BE391DCC1291005E864A /* VisaoJogador.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VisaoJogador.hpp; sourceTree = "<group>"; };
+		7FF918E11DCC16C400EBB7FA /* Jogador.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Jogador.cpp; sourceTree = "<group>"; };
+		7FF918E21DCC16C400EBB7FA /* Jogador.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Jogador.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 				7FC8BE301DCC0471005E864A /* Observador.hpp */,
 				7FC8BE321DCC05B4005E864A /* Eventos.cpp */,
 				7FC8BE331DCC05B4005E864A /* Eventos.hpp */,
+				7FF918E11DCC16C400EBB7FA /* Jogador.cpp */,
+				7FF918E21DCC16C400EBB7FA /* Jogador.hpp */,
 			);
 			path = PacManX;
 			sourceTree = "<group>";
@@ -193,6 +198,7 @@
 				7F7E383F1DBAA606008360A3 /* processador.cpp in Sources */,
 				7FC8BE3A1DCC1291005E864A /* VisaoJogador.cpp in Sources */,
 				7FC8BE311DCC0471005E864A /* Observador.cpp in Sources */,
+				7FF918E31DCC16C400EBB7FA /* Jogador.cpp in Sources */,
 				7FB874CB1D98A43400C11D34 /* game.cpp in Sources */,
 				7F42995C1D970ADF004F7D01 /* main.cpp in Sources */,
 				7FC8BE2D1DCC038D005E864A /* Ator.cpp in Sources */,
