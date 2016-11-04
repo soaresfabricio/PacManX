@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F408F281DCCF745005EDEBA /* Processador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F408F261DCCF745005EDEBA /* Processador.cpp */; };
 		7F42995C1D970ADF004F7D01 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F42995B1D970ADF004F7D01 /* main.cpp */; };
 		7F42996B1D971664004F7D01 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996A1D971664004F7D01 /* GLUT.framework */; };
 		7F42996D1D971669004F7D01 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996C1D971669004F7D01 /* OpenGL.framework */; };
 		7F42996E1D971696004F7D01 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4299681D97165B004F7D01 /* Cocoa.framework */; };
-		7F7E383F1DBAA606008360A3 /* processador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4299621D9710A9004F7D01 /* processador.cpp */; };
 		7FB874CE1D98A49E00C11D34 /* ladrilho.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB874A71D9789CD00C11D34 /* ladrilho.cpp */; };
 		7FC8BE2D1DCC038D005E864A /* Ator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8BE2B1DCC038D005E864A /* Ator.cpp */; };
 		7FC8BE311DCC0471005E864A /* Observador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8BE2F1DCC0471005E864A /* Observador.cpp */; };
@@ -35,9 +35,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7F408F261DCCF745005EDEBA /* Processador.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Processador.cpp; sourceTree = "<group>"; };
+		7F408F271DCCF745005EDEBA /* Processador.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Processador.hpp; sourceTree = "<group>"; };
 		7F4299581D970ADF004F7D01 /* PacManX */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PacManX; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F42995B1D970ADF004F7D01 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		7F4299621D9710A9004F7D01 /* processador.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = processador.cpp; sourceTree = "<group>"; };
 		7F4299681D97165B004F7D01 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7F42996A1D971664004F7D01 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		7F42996C1D971669004F7D01 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -102,7 +103,6 @@
 				7FF918E81DCC2C5900EBB7FA /* Tabuleiro.hpp */,
 				7FB874AA1D98320A00C11D34 /* mapa.png */,
 				7F42995B1D970ADF004F7D01 /* main.cpp */,
-				7F4299621D9710A9004F7D01 /* processador.cpp */,
 				7FC8BE381DCC1291005E864A /* VisaoJogador.cpp */,
 				7FC8BE391DCC1291005E864A /* VisaoJogador.hpp */,
 				7FC8BE361DCC1195005E864A /* headers.hpp */,
@@ -121,6 +121,8 @@
 				7FF918E21DCC16C400EBB7FA /* Jogador.hpp */,
 				7FF918E41DCC205700EBB7FA /* Game.cpp */,
 				7FF918E51DCC205700EBB7FA /* Game.hpp */,
+				7F408F261DCCF745005EDEBA /* Processador.cpp */,
+				7F408F271DCCF745005EDEBA /* Processador.hpp */,
 			);
 			path = PacManX;
 			sourceTree = "<group>";
@@ -193,9 +195,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FC8BE341DCC05B4005E864A /* Eventos.cpp in Sources */,
+				7F408F281DCCF745005EDEBA /* Processador.cpp in Sources */,
 				7FCA42D41DCC386A004C2AEA /* Tabuleiro.cpp in Sources */,
 				7FB874CE1D98A49E00C11D34 /* ladrilho.cpp in Sources */,
-				7F7E383F1DBAA606008360A3 /* processador.cpp in Sources */,
 				7FC8BE3A1DCC1291005E864A /* VisaoJogador.cpp in Sources */,
 				7FC8BE311DCC0471005E864A /* Observador.cpp in Sources */,
 				7FF918E31DCC16C400EBB7FA /* Jogador.cpp in Sources */,

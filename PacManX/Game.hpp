@@ -21,7 +21,7 @@
 class Game : public Observador {
 private:
     VisaoJogador visaoJogador;
-    tabuleiro tabuleiro;
+    Tabuleiro tabuleiro;
     // Placar placar;
     
     // inimigos
@@ -36,7 +36,7 @@ public:
     virtual void onSignal(std::string nome);
     void carregar();
     void redefinir();
-    tabuleiro getTabuleiro();
+    Tabuleiro getTabuleiro();
     void atualiza(float ticks);
     void processa();
     void tecla(unsigned char tecla);

@@ -80,48 +80,48 @@ void Game::atualiza(float ticks){
     jogador.atualiza(ticks);
 }
 
-void Jogador::processa(){
+void Game::processa(){
     glDepthMask(GL_TRUE);
     
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
     
     ponto posicaoJogador = jogador.getPosicao();
-    float lookAt = 1 + gameTime * 2.5;
+    float lookAt = 1 + tempo * 2.5;
     if (lookAt > 25) lookAt = 25;
     
     //gluLookAt (playerPos.x, playerPos.y, -18.0 + lookAt, playerPos.x/2, playerPos.y/2, playerPos.z, 0.0, 1.0, 0.0);
     //gluLookAt (0, -20, 18, 0, -2, playerPos.z, 0.0, 1.0, 0.0);
     // Close
     
-    handleLighting();
+    ilumina();
     
-    float startZ = -4;
-    float endZ = playerPos.z;
-    float startY = playerPos.y - 16;
-    float endY = playerPos.y;
+    float inicioZ = -4;
+    float finalZ = posicaoJogador.z;
+    float inicioY = posicaoJogador.y - 16;
+    float fimY = posicaoJogador.y;
     
-    float closestDistance = 100;
+    float distanciaProxima = 100;
     
-    for (unsigned int i = 0; i < enemies.size(); i++) {
-        point a = player.getPosition();
-        point b = enemies[i]->getPosition();
-        
-        float diffX = (float)a.x - (float)b.x;
-        float diffY = (float)a.y - (float)b.y;
-        if (diffX < 0.0) diffX = 0.0-diffX;
-        if (diffY < 0.0) diffY = 0.0-diffY;
-        
-        float distance = sqrt((diffX*diffX) + (diffY*diffY));
-        
-        if (distance < closestDistance) {
-            closestDistance = distance;
-        }
-        if (distance <= 1.1 && (enemies[i]->getState() == CHASE || enemies[i]->getState() == SCATTER)) {
-            gameState = stopped;
-            player.setDying();
-            break;
-        }
-    }
+//    for (unsigned int i = 0; i < inimigos.size(); i++) {
+//        ponto a = jogador.getPosicao();
+//        ponto b = inimigos[i]->getPosicao();
+//        
+//        float dx = (float)a.x - (float)b.x;
+//        float dy = (float)a.y - (float)b.y;
+//        if (dx < 0.0) dx = 0.0-dx;
+//        if (dy < 0.0) dy = 0.0-dy;
+//        
+//        float distancia = sqrt((dx*dx) + (dy*dy));
+//        
+//        if (distancia < distanciaProxima) {
+//            distanciaProxima = distancia;
+//        }
+//        if (distancia <= 1.1 && (inimigos[i]->getEstado() == PERSEGUINDO || inimigos[i]->getEstado() == ESPALHADO)) {
+//            estadoJogo = parado;
+//            jogador.setMorrendo();
+//            break;
+//        }
+//    }
     
     //gluLookAt (playerPos.x / 3.5, playerPos.y - 16, -4, playerPos.x / 3.5, playerPos.y, playerPos.z, 0.0, 1.0, 0.0);
     
@@ -131,27 +131,27 @@ void Jogador::processa(){
      gluLookAt (playerPos.x, startY - (startY - endY)*multiplier, startZ - (startZ - endZ)*multiplier, playerPos.x, playerPos.y, playerPos.z, 0.0, 1.0, 0.0);
      */
     
-    float lookY = playerPos.y + 2;
-    float startX = playerPos.x;
+    float lookY = posicaoJogador.y + 2;
+    float inicioX = posicaoJogador.x;
     
     if (lookY < -5.5) lookY = -5.5;
     else if (lookY > 9.5) lookY = 9.5;
     
-    if (startX < -5) startX = -5;
-    else if (startX > 5) startX = 5;
+    if (inicioX < -5) inicioX = -5;
+    else if (inicioX > 5) inicioX = 5;
     
     //std::cout << lookY << "\n";
     
-    startY = lookY - 18;
+    inicioY = lookY - 18;
     
-    gluLookAt(startX, startY, startZ, startX, lookY, playerPos.z, 0.0, 1.0, 0.0);
+    gluLookAt(inicioX, inicioY, inicioZ, inicioX, lookY, posicaoJogador.z, 0.0, 1.0, 0.0);
     
-    for (unsigned int i = 0; i < enemies.size(); i++) {
-        enemies[i]->render();
-    }
+//    for (unsigned int i = 0; i < inimigos.size(); i++) {
+//        inimigos[i]->processa();
+//    }
     
-    maze.render();
-    player.render();
+    tabuleiro.processa();
+    jogador.processa();
     
     glLoadIdentity();
     
@@ -180,164 +180,53 @@ void Jogador::processa(){
     glVertex3f(2.8, 1.5, -5);
     glEnd();
     
-    scoreBoard.render();
+    // placar.render();
     
     glDepthMask(GL_TRUE);
     
-    for (int i = 0; i < lives; i++) {
+    for (int i = 0; i < vidas; i++) {
         glPushMatrix();
         glTranslatef(2.3 - 0.4 * i, 1.75, -5);
-        playerView.render((int)(gameTime * 50 + i * 20) % 360, 180 - 30, true);
+        visaoJogador.processa((int)(tempo * 50 + i * 20) % 360, 180 - 30, true);
         glPopMatrix();
     }
     
 }
 
-//
-//void Game::render() {
-//    glDepthMask(GL_TRUE);
-//
-//    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-//
-//    point playerPos = player.getPosition();
-//    float lookAt = 1 + gameTime * 2.5;
-//    if (lookAt > 25) lookAt = 25;
-//
-//    //gluLookAt (playerPos.x, playerPos.y, -18.0 + lookAt, playerPos.x/2, playerPos.y/2, playerPos.z, 0.0, 1.0, 0.0);
-//    //gluLookAt (0, -20, 18, 0, -2, playerPos.z, 0.0, 1.0, 0.0);
-//    // Close
-//
-//    handleLighting();
-//
-//    float startZ = -4;
-//    float endZ = playerPos.z;
-//    float startY = playerPos.y - 16;
-//    float endY = playerPos.y;
-//
-//    float closestDistance = 100;
-//
-//    for (unsigned int i = 0; i < enemies.size(); i++) {
-//        point a = player.getPosition();
-//        point b = enemies[i]->getPosition();
-//
-//        float diffX = (float)a.x - (float)b.x;
-//        float diffY = (float)a.y - (float)b.y;
-//        if (diffX < 0.0) diffX = 0.0-diffX;
-//        if (diffY < 0.0) diffY = 0.0-diffY;
-//
-//        float distance = sqrt((diffX*diffX) + (diffY*diffY));
-//
-//        if (distance < closestDistance) {
-//            closestDistance = distance;
-//        }
-//        if (distance <= 1.1 && (enemies[i]->getState() == CHASE || enemies[i]->getState() == SCATTER)) {
-//            gameState = stopped;
-//            player.setDying();
-//            break;
-//        }
-//    }
-//
-//    //gluLookAt (playerPos.x / 3.5, playerPos.y - 16, -4, playerPos.x / 3.5, playerPos.y, playerPos.z, 0.0, 1.0, 0.0);
-//
-//    /*
-//     float zoomInFrom = 15;
-//     float multiplier = closestDistance > zoomInFrom ? 0.0 : 0.4 * (1.0-(1.0/zoomInFrom)*closestDistance);
-//     gluLookAt (playerPos.x, startY - (startY - endY)*multiplier, startZ - (startZ - endZ)*multiplier, playerPos.x, playerPos.y, playerPos.z, 0.0, 1.0, 0.0);
-//     */
-//
-//    float lookY = playerPos.y + 2;
-//    float startX = playerPos.x;
-//
-//    if (lookY < -5.5) lookY = -5.5;
-//    else if (lookY > 9.5) lookY = 9.5;
-//
-//    if (startX < -5) startX = -5;
-//    else if (startX > 5) startX = 5;
-//
-//    //std::cout << lookY << "\n";
-//
-//    startY = lookY - 18;
-//
-//    gluLookAt(startX, startY, startZ, startX, lookY, playerPos.z, 0.0, 1.0, 0.0);
-//
-//    for (unsigned int i = 0; i < enemies.size(); i++) {
-//        enemies[i]->render();
-//    }
-//
-//    maze.render();
-//    player.render();
-//
-//    glLoadIdentity();
-//
-//    glDepthMask(GL_FALSE);
-//    glBegin(GL_POLYGON);
-//    glColor4f(0, 0, 0, 1);
-//    glNormal3f(0, 0, -1);
-//    glVertex3f(-2.8, 2.1, -5);
-//
-//    glNormal3f(0, 0, -1);
-//    glVertex3f(-2.8, 1.5, -5);
-//
-//    glNormal3f(0, 0, -1);
-//    glVertex3f(2.8, 1.5, -5);
-//
-//    glNormal3f(0, 0, -1);
-//    glVertex3f(2.8, 2.1, -5);
-//
-//    glEnd();
-//    glLineWidth(1.5);
-//    glBegin(GL_LINE_LOOP);
-//    glColor4f(0, 0, 1, 1);
-//    glVertex3f(2.8, 2.1, -5);
-//    glVertex3f(-2.8, 2.1, -5);
-//    glVertex3f(-2.8, 1.5, -5);
-//    glVertex3f(2.8, 1.5, -5);
-//    glEnd();
-//
-//    scoreBoard.render();
-//
-//    glDepthMask(GL_TRUE);
-//
-//    for (int i = 0; i < lives; i++) {
-//        glPushMatrix();
-//        glTranslatef(2.3 - 0.4 * i, 1.75, -5);
-//        playerView.render((int)(gameTime * 50 + i * 20) % 360, 180 - 30, true);
-//        glPopMatrix();
-//    }
-//}
-//
-//void Game::handleSpecialKeystoke(int key) {
-//    switch (key) {
-//        case GLUT_KEY_UP:    player.setWantedDirection(up); break;
-//        case GLUT_KEY_DOWN:  player.setWantedDirection(down); break;
-//        case GLUT_KEY_LEFT:  player.setWantedDirection(left); break;
-//        case GLUT_KEY_RIGHT: player.setWantedDirection(right); break;
-//    }
-//
-//    if (paused) {
-//        paused = false;
-//    }
-//}
-//
-//void Game::handleKeystroke(unsigned char key) {
-//    if (paused) {
-//        paused = false;
-//        return;
-//    }
-//
-//    switch (key) {
-//        case 'w': player.setWantedDirection(up); break;
-//        case 's': player.setWantedDirection(down); break;
-//        case 'a': player.setWantedDirection(left); break;
-//        case 'd': player.setWantedDirection(right); break;
-//        case 'p': paused = !paused; break;
-//    }
-//}
-//
-//bool Game::isPaused() {
-//    return paused;
-//}
-//
-//GAMESTATE Game::getState() {
-//    return gameState;
-//}
+void Game::teclaEspecial(int tecla) {
+    switch (tecla) {
+        case GLUT_KEY_UP:    jogador.setDirecaoDesejada(cima); break;
+        case GLUT_KEY_DOWN:  jogador.setDirecaoDesejada(baixo); break;
+        case GLUT_KEY_LEFT:  jogador.setDirecaoDesejada(esquerda); break;
+        case GLUT_KEY_RIGHT: jogador.setDirecaoDesejada(direita); break;
+    }
+
+    if (pausado) {
+        pausado = false;
+    }
+}
+
+void Game::tecla(unsigned char tecla) {
+    if (pausado) {
+        pausado = false;
+        return;
+    }
+
+    switch (tecla) {
+        case 'w': jogador.setDirecaoDesejada(cima); break;
+        case 's': jogador.setDirecaoDesejada(baixo); break;
+        case 'a': jogador.setDirecaoDesejada(esquerda); break;
+        case 'd': jogador.setDirecaoDesejada(direita); break;
+        case 'p': pausado = !pausado; break;
+    }
+}
+
+
+
+bool Game::ehPausado() {
+    return pausado;
+}
+
+ESTADOGAME Game::getEstado() {
+    return estadoJogo;
+}
