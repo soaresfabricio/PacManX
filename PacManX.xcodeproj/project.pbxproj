@@ -16,6 +16,9 @@
 		7FB874CC1D98A43A00C11D34 /* jogador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB874A11D97461100C11D34 /* jogador.cpp */; };
 		7FB874CD1D98A49E00C11D34 /* tabuleiro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB8749E1D973C7300C11D34 /* tabuleiro.cpp */; };
 		7FB874CE1D98A49E00C11D34 /* ladrilho.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FB874A71D9789CD00C11D34 /* ladrilho.cpp */; };
+		7FC8BE2D1DCC038D005E864A /* Ator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8BE2B1DCC038D005E864A /* Ator.cpp */; };
+		7FC8BE311DCC0471005E864A /* Observador.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8BE2F1DCC0471005E864A /* Observador.cpp */; };
+		7FC8BE341DCC05B4005E864A /* Eventos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8BE321DCC05B4005E864A /* Eventos.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +52,12 @@
 		7FB874A81D9789CD00C11D34 /* ladrilho.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ladrilho.hpp; sourceTree = "<group>"; };
 		7FB874AA1D98320A00C11D34 /* mapa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapa.png; sourceTree = "<group>"; };
 		7FB874BD1D987F1400C11D34 /* direcao.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = direcao.hpp; sourceTree = "<group>"; };
+		7FC8BE2B1DCC038D005E864A /* Ator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ator.cpp; sourceTree = "<group>"; };
+		7FC8BE2C1DCC038D005E864A /* Ator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ator.hpp; sourceTree = "<group>"; };
+		7FC8BE2F1DCC0471005E864A /* Observador.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Observador.cpp; sourceTree = "<group>"; };
+		7FC8BE301DCC0471005E864A /* Observador.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Observador.hpp; sourceTree = "<group>"; };
+		7FC8BE321DCC05B4005E864A /* Eventos.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Eventos.cpp; sourceTree = "<group>"; };
+		7FC8BE331DCC05B4005E864A /* Eventos.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Eventos.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +108,12 @@
 				7FB874BD1D987F1400C11D34 /* direcao.hpp */,
 				7F7E383A1DBAA0BC008360A3 /* Temporizador.cpp */,
 				7F7E383B1DBAA0BC008360A3 /* Temporizador.hpp */,
+				7FC8BE2B1DCC038D005E864A /* Ator.cpp */,
+				7FC8BE2C1DCC038D005E864A /* Ator.hpp */,
+				7FC8BE2F1DCC0471005E864A /* Observador.cpp */,
+				7FC8BE301DCC0471005E864A /* Observador.hpp */,
+				7FC8BE321DCC05B4005E864A /* Eventos.cpp */,
+				7FC8BE331DCC05B4005E864A /* Eventos.hpp */,
 			);
 			path = PacManX;
 			sourceTree = "<group>";
@@ -171,11 +186,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FB874CD1D98A49E00C11D34 /* tabuleiro.cpp in Sources */,
+				7FC8BE341DCC05B4005E864A /* Eventos.cpp in Sources */,
 				7FB874CE1D98A49E00C11D34 /* ladrilho.cpp in Sources */,
 				7FB874CC1D98A43A00C11D34 /* jogador.cpp in Sources */,
 				7F7E383F1DBAA606008360A3 /* processador.cpp in Sources */,
+				7FC8BE311DCC0471005E864A /* Observador.cpp in Sources */,
 				7FB874CB1D98A43400C11D34 /* game.cpp in Sources */,
 				7F42995C1D970ADF004F7D01 /* main.cpp in Sources */,
+				7FC8BE2D1DCC038D005E864A /* Ator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,11 @@ enum DIRECAO {
     esquerda
 };
 
+enum ESTADOGAME {
+    executando,
+    parado
+};
+
 struct ponto {
 public:
     float x;
