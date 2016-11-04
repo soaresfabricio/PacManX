@@ -12,6 +12,7 @@
 #include <time.h>
 
 #include "Jogador.hpp"
+#include "Placar.hpp"
 #include "VisaoJogador.hpp"
 #include "direcao.hpp"
 #include "tabuleiro.hpp"
@@ -22,7 +23,7 @@ class Game : public Observador {
 private:
     VisaoJogador visaoJogador;
     Tabuleiro tabuleiro;
-    // Placar placar;
+    Placar placar;
     
     // inimigos
     

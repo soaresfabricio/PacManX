@@ -10,25 +10,25 @@
 
 void Processador::iniciaGL(int largura, int altura){
     game.carregar();
-        glClearColor(0.0, 0.0, 0.0, 0.5);
+    glClearColor(0.0, 0.0, 0.0, 0.5);
     
-        glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
     
-        //glPolygonMode(GL_FRONT, GL_LINE);
+    //glPolygonMode(GL_FRONT, GL_LINE);
     
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
-        glClearDepth(1.0);
-        glDepthFunc(GL_LESS);
-        glEnable(GL_DEPTH_TEST);
-        glShadeModel(GL_SMOOTH);
+    glClearDepth(1.0);
+    glDepthFunc(GL_LESS);
+    glEnable(GL_DEPTH_TEST);
+    glShadeModel(GL_SMOOTH);
     
-        glLoadIdentity();
+    glLoadIdentity();
     
-        gluPerspective(45.0f, (GLfloat)largura/(GLfloat)altura, 0.1f, 100.0f);
-        
-        glMatrixMode(GL_MODELVIEW);
+    gluPerspective(45.0f, (GLfloat)largura/(GLfloat)altura, 0.1f, 100.0f);
+    
+    glMatrixMode(GL_MODELVIEW);
     
 }
 

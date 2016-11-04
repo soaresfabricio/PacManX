@@ -6,12 +6,7 @@
 //  Copyright © 2016 Fabrício, Yooh e Wesnydy. All rights reserved.
 //
 
-// Indica ao compilador qual arquivo incluir, de acordo com o Sistema Operacional
-#if defined(__APPLE__) && defined(__MACH__)
-#  include <GLUT/glut.h>
-#else
-#  include <GL/glut.h>
-#endif
+#include "headers.hpp"
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -19,7 +14,7 @@
 #include <string.h>
 #include <pthread.h>
 
-#include "processador.cpp"
+#include "Processador.cpp"
 
 int main(int argc, char ** argv) {
     
@@ -30,23 +25,23 @@ int main(int argc, char ** argv) {
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH);
     
     // Configura dimensão e posição da janela
-    glutInitWindowSize(800, 600);
+    glutInitWindowSize(1024, 768);
     glutInitWindowPosition(0, 0);
     
     // Nome na barra de título da janela
     janela = glutCreateWindow("PacMan");
     
     // Entrega funções de (re)desenho a GLUT
-    glutDisplayFunc(&processador::desenha);
-    glutIdleFunc(&processador::desenha);
-    glutReshapeFunc(&processador::redesenha);
+    glutDisplayFunc(&Processador::desenha);
+    glutIdleFunc(&Processador::desenha);
+    glutReshapeFunc(&Processador::redimensiona);
 
     // Trata recebimento de teclas
-    glutKeyboardFunc(&processador::teclaPressionada);
-    glutSpecialFunc(&processador::teclaEspecial);
+    glutKeyboardFunc(&Processador::tecla);
+    glutSpecialFunc(&Processador::teclaEspecial);
 
     // Inicia renderização
-    processador::iniciaGL(800, 600);
+    Processador::iniciaGL(1024, 768);
     glutMainLoop();
     
     return 1;

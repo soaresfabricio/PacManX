@@ -429,7 +429,7 @@ void Tabuleiro::criaTabuleiro() {
             float somaCores = cor[0] + cor[1] + cor[2];
             
             if (cor[0] == 1.0 && somaCores == 1.0) {
-                ladrilhos[x][y].setPilula();
+                ladrilhos[x][y].setEnergizer();
             }
             else if (cor[0] == 1.0 && cor[1] == 1.0 && cor[2] == 0.0) {
                 // Ponto
@@ -480,24 +480,9 @@ void Tabuleiro::criaTabuleiro() {
     
     glEndList();
 }
-//
-//void Maze::drawCeiling(int x, int y) {
-//    float pointX = (float)x-(width/2);
-//    float pointY = (float)y-(height/2);
-//    float top = -19 - 0.02;
-//    
-//    glBegin(GL_QUADS);
-//    glNormal3f(0, 0, 1);
-//    glVertex3f(pointX, pointY, top);
-//    glNormal3f(0, 0, 1);
-//    glVertex3f(pointX+1, pointY, top);
-//    glNormal3f(0, 0, 1);
-//    glVertex3f(pointX+1, pointY+1, top);
-//    glNormal3f(0, 0, 1);
-//    glVertex3f(pointX, pointY+1, top);
-//    glEnd();
-//}
-//
+
+
+
 void Tabuleiro::desenhaParede(int x, int y, float * cor) {
     float px = (float)x-largura/2;
     float py = (float)y-altura/2;
@@ -579,11 +564,11 @@ float * Tabuleiro::getPixel(int x, int y) {
     return pixels[x][y];
 }
 
-ladrilho * Tabuleiro::getLadrilho(int x, int y) {
+Ladrilho * Tabuleiro::getLadrilho(int x, int y) {
     return &ladrilhos[x][y];
 }
 
-void Tabuleiro::atualiza(float ticks, float gameTime) {
+void Tabuleiro::atualiza(float ticks, float tempo) {
     ultimosTicks = ticks;
     this->tempo = tempo;
 }

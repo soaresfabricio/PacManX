@@ -36,7 +36,7 @@ private:
     float progressoMorte;
     float totalTicks;
     
-    ladrilho * ladrilhoAtual;
+    Ladrilho * ladrilhoAtual;
     float posicao;
     float ultimosTicks;
     
@@ -56,7 +56,7 @@ public:
     
     ponto getPosicao();
     void incrementaPosicao(float number);
-    void setLadrilhoAtual(ladrilho * l);
-    ladrilho * getLadrilhoAtual();
-    
+    void setLadrilhoAtual(Ladrilho * l);
+    Ladrilho * getLadrilhoAtual();
+
 };

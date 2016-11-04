@@ -35,7 +35,7 @@ private:
     float tempo;
     
     float * pixels[28][31];
-    ladrilho ladrilhos[28][31];
+    Ladrilho ladrilhos[28][31];
     GLuint tabuleiroDisplayList;
     Jogador jogador;
     // std::map <const char *, int> vertexes;
@@ -99,5 +99,5 @@ public:
     void atualiza(float ticks, float gameTime);
     void processa();
     
-    ladrilho * getLadrilho(int x, int y);
+    Ladrilho * getLadrilho(int x, int y);
 };

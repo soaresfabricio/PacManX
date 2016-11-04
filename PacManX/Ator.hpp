@@ -12,11 +12,11 @@
 #include "direcao.hpp"
 #include "Observador.hpp"
 
-class game;
+class Game;
 
 class Ator : public Observador {
 protected:
-    game * g;
+    Game * game;
     void resolvePosicao(float movemento);
     bool ehOposto(DIRECAO a, DIRECAO b);
     DIRECAO getOposto(DIRECAO dir);
@@ -26,11 +26,11 @@ protected:
     void offsetVetor(ponto *entrada, ponto * offset, ponto * saida);
     void getNormal(ponto * a, ponto * b, ponto * saida);
     bool normalizaVetor(ponto * entrada, ponto * saida);
-    ponto calculaFaceNormal(ponto * p1, ponto * p2, ponto * p3, ponto * saida);
+    ponto faceNormal(ponto * p1, ponto * p2, ponto * p3, ponto * saida);
     ponto computaVerticeNormal(ponto a, ponto b, ponto c, ponto d);
     
 public:
-    void setGame(game * g);
+    void setGame(Game * gPonteiro);
     void atualiza(float ticks);
     void processa();
     

@@ -8,28 +8,27 @@
 
 #include "VisaoJogador.hpp"
 
-ponto VisaoJogador::normalizaVetor(ponto v){
-    ponto vetorNormalizado;
+ponto VisaoJogador::normalizaVetor(ponto v) {
+    ponto normalizado;
     float comprimento = (float)(sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
-    vetorNormalizado.x = v.x / comprimento;
-    vetorNormalizado.y = v.y / comprimento;
-    vetorNormalizado.z = v.z / comprimento;
-    return vetorNormalizado;
+    normalizado.x = v.x / comprimento;
+    normalizado.y = v.y / comprimento;
+    normalizado.z = v.z / comprimento;
+    return normalizado;
 }
 
-void VisaoJogador::setRotacao(double r){
+void VisaoJogador::setRotacao(double r) {
     rotacao = r;
 }
 
-void VisaoJogador::setRaio(double r){
+void VisaoJogador::setRaio(double r) {
     raio = r;
 }
 
-void VisaoJogador::processa(float direcao, float abertura, bool desenhado){
+void VisaoJogador::processa(float direcao, float abertura, bool desenhado) {
     glRotatef(90, 0, 1, 0);
     glRotatef(rotacao, 0, 0, 1);
     glRotatef(direcao, 1, 0, 0);
-    glRotatef(90, 0, 0, 1);
     glRotatef(90, 0, 0, 1);
     
     if (!desenhado) return;
@@ -42,7 +41,7 @@ void VisaoJogador::processa(float direcao, float abertura, bool desenhado){
     
     float i, j;
     
-    for (i = 1; i <= lats; ++i) {
+    for(i = 1; i <= lats; i++) {
         double lat0 = M_PI * (-0.5 + (double) (i - 1) / lats);
         double z0  = sin(lat0);
         double zr0 = cos(lat0);
@@ -51,13 +50,13 @@ void VisaoJogador::processa(float direcao, float abertura, bool desenhado){
         double z1 = sin(lat1);
         double zr1 = cos(lat1);
         
-        bool desenhado = false;
+        bool desenhadon = false;
         
         float m;
         
-        for (j = 0; j <= 360; j+= 360 / longs) {
+        for(j = 0; j <= 360; j += 360 / longs) {
             if (j <= abertura || j >= 360 - abertura) {
-                double lng = 2 * M_PI * (double) (j-1) / 360;
+                double lng = 2 * M_PI * (double) (j - 1) / 360;
                 double x = cos(lng);
                 double y = sin(lng);
                 
@@ -65,8 +64,9 @@ void VisaoJogador::processa(float direcao, float abertura, bool desenhado){
                 
                 pontos.push_back(ponto(raio * x * zr1, raio * y * zr1, raio * z1));
                 pontos.push_back(ponto(raio * x * zr0, raio * y * zr0, raio * z0));
-            } else if (!desenhado) {
-                desenhado = true;
+            }
+            else if (!desenhadon) {
+                desenhadon = true;
                 
                 m = (int)(0.5 + abertura);
                 
@@ -101,7 +101,7 @@ void VisaoJogador::processa(float direcao, float abertura, bool desenhado){
     
     glColor3f(1,1,0);
     
-    bool ehBoca = false;
+    bool isboca = false;
     
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < pontos.size(); i++) {
@@ -109,18 +109,18 @@ void VisaoJogador::processa(float direcao, float abertura, bool desenhado){
         if (boca.find(i) != boca.end()) {
             if (boca.find(i)->second) {
                 glColor3f(1, 0, 0);
-                ehBoca = true;
+                isboca = true;
             }
             else {
                 glColor3f(1, 1, 0);
-                ehBoca = false;
+                isboca = false;
             }
         }
         
         ponto p = pontos[i];
         
         ponto n = normalizaVetor(p);
-        if (ehBoca) {
+        if (isboca) {
             glNormal3f(-1, 0, 0);
         }
         else {
@@ -130,7 +130,4 @@ void VisaoJogador::processa(float direcao, float abertura, bool desenhado){
         glVertex3f(p.x, p.y, p.z);
     }
     glEnd();
-    
-    
-    
 }

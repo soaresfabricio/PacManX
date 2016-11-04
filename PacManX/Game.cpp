@@ -6,7 +6,7 @@ void Game::carregar(){
     visaoJogador.setRotacao(280);
     srand(time(NULL));
     tabuleiro.carrega();
-    //jogador.setJogo(this);
+    jogador.setGame(this);
     redefinir();
     Eventos::getInstancia()->adicionar(this, "jogadormorreu");
     //placar.redefinir();
@@ -30,7 +30,7 @@ void Game::redefinir(){
     
 }
 
-tabuleiro Game::getTabuleiro(){
+Tabuleiro Game::getTabuleiro(){
     return tabuleiro;
 }
 
@@ -68,7 +68,7 @@ void Game::ilumina(){
 
 void Game::atualiza(float ticks){
     tempo += ticks;
-    //    placar.atualiza(ticks);
+    placar.atualiza(ticks);
     
     
     /**
@@ -180,7 +180,7 @@ void Game::processa(){
     glVertex3f(2.8, 1.5, -5);
     glEnd();
     
-    // placar.render();
+    placar.processa();
     
     glDepthMask(GL_TRUE);
     
