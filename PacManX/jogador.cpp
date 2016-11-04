@@ -40,21 +40,21 @@ ponto jogador::getPosicao(){
     ponto posAtual = ladAtual->getCentro();
     
     switch (dir) {
-
-        // Adiciona um delta positivo a coordenada x atual
+            
+            // Adiciona um delta positivo a coordenada x atual
         case direita:
             posAtual.x = posAtual.x + pos;
             break;
-        
-        // Adiciona um delta negativo a coordenada x atual
+            
+            // Adiciona um delta negativo a coordenada x atual
         case esquerda:
             posAtual.x = posAtual.x - pos;
             
-        // Adiciona um delta positivo a coordenada y atual
+            // Adiciona um delta positivo a coordenada y atual
         case cima:
             posAtual.y = posAtual.y + pos;
             
-        // Adiciona um delta negativo a coordenada y atual
+            // Adiciona um delta negativo a coordenada y atual
         case baixo:
             posAtual.y = posAtual.y + pos;
             
@@ -67,13 +67,51 @@ ponto jogador::getPosicao(){
 
 void jogador::posiciona(float movimento){
     
-}
+    if (this->eh) {
+        <#statements#>
+    }
+    
+//    // Backwardo
+//    if (this->isOpposite(direction, wantedDirection)) {
+//        currentTile = currentTile->getExit(direction);
+//        position = 1.0-position;
+//        direction = wantedDirection;
+//        std::cout << "Pacman se vira" << std::endl;
+//    }
+//    
+//    if (direction != none) position += movement;
+//    if (direction != none && position < 1.0) return;
+//    
+//    if (direction == none && currentTile->hasExit(wantedDirection)) {
+//        direction = wantedDirection;
+//        currentTile->getExit(direction)->setColor(1);
+//        wantedDirection = none;
+//        std::cout << "Pacman volta a ativa" << std::endl;
+//    }
+//    
+//    if (position >= 1.0) {
+//        currentTile = currentTile->getExit(direction);
+//        currentTile->setVisited();
+//        if (currentTile->hasExit(wantedDirection)) {
+//            position -= 1.0;
+//            direction = wantedDirection;
+//            wantedDirection = none;
+//            std::cout << "Pacman recebe novo comando" << std::endl;
+//            return;
+//        }
+//        position = 0.0;
+//        if (!currentTile->hasExit(direction)) {
+//            direction = none;
+//            std::cout << "Pacman encontra parede" << std::endl;
+//            
+//        }
+//    }
 
 
 /**
  * Processa posição do jogador e renderiza PacMan.
  */
- 
+
 void jogador::processa(float ticks){
     
     // Configura uma certa velocidade
@@ -167,7 +205,7 @@ void jogador::processa(float ticks){
             
             if (j <= 180 + 45 + metadeLimite || j >= 360 - 45 - metadeLimite) {
                 double lng = 2 * M_PI * (double) (j - 1) / 360;
-            
+                
                 double x = cos(lng);
                 double y = sin(lng);
                 
@@ -176,17 +214,49 @@ void jogador::processa(float ticks){
                 
                 glVertex3f(raio * x * zr0, raio * y * zr0, raio * z0);
                 glVertex3f(raio * x * zr1, raio * y * zr1, raio * z1);
-            
+                
             } else if (!desenhado){
                 
+                desenhado = true;
+                m = (int)(0.5 + 180 + 45 + metadeLimite);
+                
+                double lng = 2 * M_PI + 45 + metadeLimite;
+                double x = cos(lng);
+                double y = sin(lng);
+                
+                glVertex3f(raio * x * zr0, raio * y * zr0, raio * z0);
+                glVertex3f(raio * x * zr0, raio * y * zr0, raio * z1);
+                glVertex3f(raio * x * zr0, raio * y * zr0, raio * z0);
+                glVertex3f(raio * x * zr1, raio * y * zr1, raio * z1);
+                glColor3f(1,0,0);
+                glVertex3f(raio * x * zr0, raio * y * zr0, raio * z0);
+                glVertex3f(raio * x * zr1, raio * y * zr1, raio * z1);
+                glVertex3f(0, 0, raio * z0);
+                glVertex3f(0, 0, raio * z1);
+                
+    
+                
+                m = (int)(0.5 + 360 - 45 - metadeLimite);
+                
+                lng = 2 * M_PI * (double) (m - 1) / 360;
+                x = cos(lng);
+                y = sin(lng);
+                
+                glVertex3f(raio * x * zr0, raio * y * zr0, raio * z0);
+                glVertex3f(raio * x * zr1, raio * y * zr1, raio * z1);
+                glColor3f(1,1,0);
+                glVertex3f(raio * x * zr0, raio * y * zr0, raio * z0);
+                glVertex3f(raio * x * zr1, raio * y * zr1, raio * z1);
+                
             }
+            
             
         }
         glEnd();
         
     }
-
+    
     glPopMatrix();
-
+    
     
 }

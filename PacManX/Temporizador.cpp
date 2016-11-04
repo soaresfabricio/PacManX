@@ -1,5 +1,5 @@
 //
-//  timer.cpp
+//  Temporizador.cpp
 //  PacManX
 //
 //  Created by Fabrício Soares on 21/10/16.
@@ -24,3 +24,5 @@ float Temporizador::getSegundos(){
     
     return (iniciar.tv_sec - segundoInicial) + iniciar.tv_usec/1000000.0;
 }
+
+

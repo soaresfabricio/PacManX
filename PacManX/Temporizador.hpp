@@ -1,5 +1,5 @@
 //
-//  timer.hpp
+//  Temporizador.hpp
 //  PacManX
 //
 //  Created by Fabrício Soares on 21/10/16.
@@ -7,7 +7,10 @@
 //
 #pragma once
 
-class Temporizador{
+#include <ctime>
+#include <sys/time.h>
+
+class Temporizador {
 private:
     long segundoInicial;
 public:
