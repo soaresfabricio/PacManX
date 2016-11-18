@@ -16,7 +16,7 @@ HEADERS += direcao.hpp \
            Temporizador.hpp \
            Ator.hpp \
            Jogador.hpp \
-	   Placar.h \
+	   Placar.hpp \
            VisaoJogador.hpp \
            Processador.cpp \
            Temporizador.cpp
