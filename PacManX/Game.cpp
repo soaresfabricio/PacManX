@@ -8,7 +8,7 @@ void Game::carregar(){
     tabuleiro.carrega();
     jogador.setGame(this);
     redefinir();
-    Eventos::getInstancia()->adicionar(this, "jogadormorreu");
+    Eventos::getInstancia()->adicionar(this, "playerdied");
     placar.reiniciar();
 }
 
@@ -60,7 +60,7 @@ Tabuleiro Game::getTabuleiro(){
 }
 
 void Game::onSignal(std::string nome) {
-    if (nome == "jogadormorreu") {
+    if (nome == "playerdied") {
         vidas--;
         redefinir();
     }
@@ -147,24 +147,24 @@ void Game::processa(){
     }
     
     
-    /*
-     float zoomInFrom = 15;
-     float multiplier = distanciaMaisProxima > zoomInFrom ? 0.0 : 0.4 * (1.0-(1.0/zoomInFrom)*distanciaMaisProxima);
-     gluLookAt (posicaoJogador.x, startY - (startY - endY)*multiplier, inicioZ - (inicioZ - finalZ)*multiplier, posicaoJogador.x, posicaoJogador.y, posicaoJogador.z, 0.0, 1.0, 0.0);
-     */
     
-    float lookY = posicaoJogador.y + 2;
-    float inicioX = posicaoJogador.x;
+     float zoomIn = 30;
+     float mult = distanciaMaisProxima > zoomIn ?  0.01 : 0.4 * (1.0-(1.0/zoomIn)*distanciaMaisProxima);
+     gluLookAt (posicaoJogador.x, startY - (startY - endY)*mult, inicioZ - (inicioZ - finalZ)*mult, posicaoJogador.x , posicaoJogador.y * mult + 7, posicaoJogador.z, 0.0, 1.0, 0.0);
     
-    if (lookY < -5.5) lookY = -5.5;
-    else if (lookY > 9.5) lookY = 9.5;
-    
-    if (inicioX < -5) inicioX = -5;
-    else if (inicioX > 5) inicioX = 5;
-    
-    startY = lookY - 18;
-    
-    gluLookAt(inicioX, startY, inicioZ, inicioX, lookY, posicaoJogador.z, 0.0, 1.0, 0.0);
+//    
+//    float lookY = posicaoJogador.y + 2;
+//    float inicioX = posicaoJogador.x;
+//    
+//    if (lookY < -5.5) lookY = -5.5;
+//    else if (lookY > 9.5) lookY = 9.5;
+//    
+//    if (inicioX < -5) inicioX = -5;
+//    else if (inicioX > 5) inicioX = 5;
+//    
+//    startY = lookY - 18;
+//    
+//    gluLookAt(inicioX, startY, inicioZ, inicioX, lookY, posicaoJogador.z, 0.0, 1.0, 0.0);
     
     for (unsigned int i = 0; i < inimigos.size(); i++) {
         inimigos[i]->processa();

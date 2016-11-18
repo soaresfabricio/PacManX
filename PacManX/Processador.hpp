@@ -41,6 +41,7 @@ typedef struct {
 class Processador{
 public:
     static int x;
+    static int lookAt;
     static Temporizador temporizador;
     
     static float ultimoClock;

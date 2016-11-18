@@ -16,6 +16,7 @@
 		7F0235B31DCD0AE700F204FC /* Ladrilho.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F0235AA1DCCFB5000F204FC /* Ladrilho.cpp */; };
 		7F0235B41DCD0AED00F204FC /* Tabuleiro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FF918E71DCC2C5900EBB7FA /* Tabuleiro.cpp */; };
 		7F0235B71DCD0E8A00F204FC /* Placar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F0235B51DCD0E8A00F204FC /* Placar.cpp */; };
+		7F12C8101DDF7BDD002CA562 /* Explosao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F12C80E1DDF7BDD002CA562 /* Explosao.cpp */; };
 		7F42995C1D970ADF004F7D01 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F42995B1D970ADF004F7D01 /* main.cpp */; };
 		7F42996B1D971664004F7D01 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996A1D971664004F7D01 /* GLUT.framework */; };
 		7F42996D1D971669004F7D01 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996C1D971669004F7D01 /* OpenGL.framework */; };
@@ -44,6 +45,13 @@
 		7F0235AB1DCCFB5000F204FC /* Ladrilho.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Ladrilho.hpp; sourceTree = "<group>"; };
 		7F0235B51DCD0E8A00F204FC /* Placar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Placar.cpp; sourceTree = "<group>"; };
 		7F0235B61DCD0E8A00F204FC /* Placar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Placar.hpp; sourceTree = "<group>"; };
+		7F12C8061DDF78C1002CA562 /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
+		7F12C8081DDF7912002CA562 /* Particula.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particula.cpp; sourceTree = "<group>"; };
+		7F12C8091DDF7912002CA562 /* Particula.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Particula.hpp; sourceTree = "<group>"; };
+		7F12C80B1DDF7AB5002CA562 /* ParticulaSangue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParticulaSangue.cpp; sourceTree = "<group>"; };
+		7F12C80C1DDF7AB5002CA562 /* ParticulaSangue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParticulaSangue.hpp; sourceTree = "<group>"; };
+		7F12C80E1DDF7BDD002CA562 /* Explosao.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Explosao.cpp; sourceTree = "<group>"; };
+		7F12C80F1DDF7BDD002CA562 /* Explosao.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Explosao.hpp; sourceTree = "<group>"; };
 		7F408F261DCCF745005EDEBA /* Processador.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Processador.cpp; sourceTree = "<group>"; };
 		7F408F271DCCF745005EDEBA /* Processador.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Processador.hpp; sourceTree = "<group>"; };
 		7F4299581D970ADF004F7D01 /* PacManX */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PacManX; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +160,13 @@
 				7FEF3C8A1DDF6C5F00943AF8 /* Clyde.hpp */,
 				7FEF3C8C1DDF6D0A00943AF8 /* Inky.cpp */,
 				7FEF3C8D1DDF6D0A00943AF8 /* Inky.hpp */,
+				7F12C8061DDF78C1002CA562 /* Vector.hpp */,
+				7F12C8081DDF7912002CA562 /* Particula.cpp */,
+				7F12C8091DDF7912002CA562 /* Particula.hpp */,
+				7F12C80B1DDF7AB5002CA562 /* ParticulaSangue.cpp */,
+				7F12C80C1DDF7AB5002CA562 /* ParticulaSangue.hpp */,
+				7F12C80E1DDF7BDD002CA562 /* Explosao.cpp */,
+				7F12C80F1DDF7BDD002CA562 /* Explosao.hpp */,
 			);
 			path = PacManX;
 			sourceTree = "<group>";
@@ -231,6 +246,7 @@
 				7FEF3C8B1DDF6C5F00943AF8 /* Clyde.cpp in Sources */,
 				7F0235B71DCD0E8A00F204FC /* Placar.cpp in Sources */,
 				7F0235B01DCD0AD400F204FC /* Eventos.cpp in Sources */,
+				7F12C8101DDF7BDD002CA562 /* Explosao.cpp in Sources */,
 				7FEF3C8E1DDF6D0A00943AF8 /* Inky.cpp in Sources */,
 				7F0235AF1DCD0ACD00F204FC /* VisaoJogador.cpp in Sources */,
 				7F0235AE1DCD0AC300F204FC /* Observador.cpp in Sources */,

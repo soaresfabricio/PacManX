@@ -41,7 +41,7 @@ void Processador::redimensiona(int largura, int altura) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     
-    gluPerspective(45.0f,(GLfloat)largura/(GLfloat)altura,0.1f,100.0f);
+    gluPerspective(55.0f,(GLfloat)largura/(GLfloat)altura,0.5f,100.0f);
     //gluPerspective(85.0f,(GLfloat)largura/(GLfloat)altura,0.1f,1300.0f);
 
     glMatrixMode(GL_MODELVIEW);

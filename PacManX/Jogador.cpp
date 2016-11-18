@@ -41,7 +41,7 @@ void Jogador::setMorrendo() {
     if (estado != MORRENDO) {
         estado = MORRENDO;
         progressoMorte = 0;
-        //pacmanExplosion.reset();
+        explosao.reiniciar();
     }
 }
 
@@ -149,7 +149,7 @@ void Jogador::processa() {
     }
     
     if (estado == MORRENDO) {
-        //pacmanExplosion.processa(lastTicks);
+        explosao.processa(ultimosTicks);
     }
     
     glPopMatrix();

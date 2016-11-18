@@ -16,7 +16,7 @@
 #include "Eventos.hpp"
 #include "Direcao.hpp"
 #include "Ladrilho.hpp"
-// #include explosao.hpp
+#include "Explosao.hpp"
 #include "VisaoJogador.hpp"
 #include "Ator.hpp"
 
@@ -31,13 +31,14 @@ private:
     DIRECAO direcao;
     DIRECAO direcaoDesejada;
     ESTADOJOGADOR estado;
-    // TODO: Explosao explosao;
+    Explosao explosao;
     
     float progressoMorte;
     float totalTicks;
     
     Ladrilho * ladrilhoAtual;
     float posicao;
+    
     float ultimosTicks;
     
     void resolvePosicao(float movemento);
@@ -46,6 +47,7 @@ private:
 public:
     ESTADOJOGADOR getEstado();
     void setMorrendo();
+    
     DIRECAO getDirecao();
     void setDirecao(DIRECAO d);
     DIRECAO getDirecaoDesejada();
@@ -56,6 +58,7 @@ public:
     
     ponto getPosicao();
     void incrementaPosicao(float number);
+    
     void setLadrilhoAtual(Ladrilho * l);
     Ladrilho * getLadrilhoAtual();
 
