@@ -5,31 +5,61 @@
 TEMPLATE = app
 TARGET = pacmanx
 
-# Input
-HEADERS += direcao.hpp \
-           Observador.hpp \
-           Eventos.hpp \
-           Game.hpp \
-           Tabuleiro.hpp \
-           Processador.hpp \
-           Ladrilho.hpp \
-           Temporizador.hpp \
-           Ator.hpp \
-           Jogador.hpp \
-	   Placar.hpp \
-           VisaoJogador.hpp \
-           Processador.cpp \
-           Temporizador.cpp
+unix:macx {
+    QMAKE_CXXFLAGS_X86_64 += -mmacosx-version-min=10.7 -stdlib=libc++
+    QMAKE_LFLAGS += -framework GLUT
+    QMAKE_LFLAGS += -framework opengl
+    QMAKE_CXXFLAGS += -Wno-deprecated-declarations
+}
 
-SOURCES += Observador.cpp \
-           Eventos.cpp \
-           Game.cpp \
-           Tabuleiro.cpp \
-           main.cpp \
-           Processador.cpp \
-           Ladrilho.cpp \
-           Temporizador.cpp \
-           Ator.cpp \
-           Jogador.cpp \
-	   Placar.cpp \
-           VisaoJogador.cpp
+unix:!macx {
+    LIBS += -lGL -lGLU -lglut
+}
+
+# Input
+HEADERS+= direcao.hpp \
+          Observador.hpp \
+          Eventos.hpp \
+          Game.hpp \
+          Tabuleiro.hpp \
+          Processador.hpp \
+          Ladrilho.hpp \
+          Temporizador.hpp \
+          Ator.hpp \
+          Blinky.hpp \
+          Clyde.hpp \
+          Inimigo.hpp \
+          Inky.hpp \
+          Pinky.hpp \
+          Jogador.hpp \
+          ParticulaSangue.hpp \
+          Explosao.hpp \
+          Particula.hpp \
+          Placar.hpp \
+          Vector.hpp \
+          VisaoJogador.hpp \
+          Processador.cpp \
+          Temporizador.cpp \
+          Particula.cpp \
+          ParticulaSangue.cpp
+
+SOURCES+= Observador.cpp \
+          Eventos.cpp \
+          Game.cpp \
+          Tabuleiro.cpp \
+          main.cpp \
+          Processador.cpp \
+          Ladrilho.cpp \
+          Temporizador.cpp \
+          Ator.cpp \
+          Blinky.cpp \
+          Clyde.cpp \
+          Inimigo.cpp \
+          Inky.cpp \
+          Pinky.cpp \
+          Jogador.cpp \
+          ParticulaSangue.cpp \
+          Explosao.cpp \
+          Particula.cpp \
+          Placar.cpp \
+          VisaoJogador.cpp
