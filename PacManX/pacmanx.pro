@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = 
+TARGET = pacmanx
 
 # Input
 HEADERS += direcao.hpp \
