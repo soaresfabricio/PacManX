@@ -573,11 +573,16 @@ void Tabuleiro::atualiza(float ticks, float tempo) {
     this->tempo = tempo;
 }
 
+
+
+
+
 void Tabuleiro::processa() {
+   
+    
     //glTranslatef(0,0,-0.5);
     glCallList(tabuleiroDisplayList);
     //glTranslatef(0,0,0.5);
-    //glCallList(mazeDisplayList);
     
     for (int x = 0; x < largura; x++) {
         for (int y = 0; y < altura; y++) {
@@ -585,4 +590,6 @@ void Tabuleiro::processa() {
             ladrilhos[x][y].processa();
         }   
     }
+
+    
 }

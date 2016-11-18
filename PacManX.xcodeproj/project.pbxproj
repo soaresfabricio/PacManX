@@ -20,6 +20,11 @@
 		7F42996B1D971664004F7D01 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996A1D971664004F7D01 /* GLUT.framework */; };
 		7F42996D1D971669004F7D01 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996C1D971669004F7D01 /* OpenGL.framework */; };
 		7F42996E1D971696004F7D01 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4299681D97165B004F7D01 /* Cocoa.framework */; };
+		7FEF3C851DDF5F7400943AF8 /* Inimigo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF3C831DDF5F7400943AF8 /* Inimigo.cpp */; };
+		7FEF3C881DDF6B6400943AF8 /* Blinky.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF3C861DDF6B6400943AF8 /* Blinky.cpp */; };
+		7FEF3C8B1DDF6C5F00943AF8 /* Clyde.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF3C891DDF6C5F00943AF8 /* Clyde.cpp */; };
+		7FEF3C8E1DDF6D0A00943AF8 /* Inky.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF3C8C1DDF6D0A00943AF8 /* Inky.cpp */; };
+		7FEF3C911DDF711E00943AF8 /* Pinky.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF3C8F1DDF711E00943AF8 /* Pinky.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +64,16 @@
 		7FC8BE361DCC1195005E864A /* headers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = headers.hpp; sourceTree = "<group>"; };
 		7FC8BE381DCC1291005E864A /* VisaoJogador.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VisaoJogador.cpp; sourceTree = "<group>"; };
 		7FC8BE391DCC1291005E864A /* VisaoJogador.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VisaoJogador.hpp; sourceTree = "<group>"; };
+		7FEF3C831DDF5F7400943AF8 /* Inimigo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Inimigo.cpp; sourceTree = "<group>"; };
+		7FEF3C841DDF5F7400943AF8 /* Inimigo.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Inimigo.hpp; sourceTree = "<group>"; };
+		7FEF3C861DDF6B6400943AF8 /* Blinky.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Blinky.cpp; sourceTree = "<group>"; };
+		7FEF3C871DDF6B6400943AF8 /* Blinky.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Blinky.hpp; sourceTree = "<group>"; };
+		7FEF3C891DDF6C5F00943AF8 /* Clyde.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Clyde.cpp; sourceTree = "<group>"; };
+		7FEF3C8A1DDF6C5F00943AF8 /* Clyde.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Clyde.hpp; sourceTree = "<group>"; };
+		7FEF3C8C1DDF6D0A00943AF8 /* Inky.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Inky.cpp; sourceTree = "<group>"; };
+		7FEF3C8D1DDF6D0A00943AF8 /* Inky.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Inky.hpp; sourceTree = "<group>"; };
+		7FEF3C8F1DDF711E00943AF8 /* Pinky.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pinky.cpp; sourceTree = "<group>"; };
+		7FEF3C901DDF711E00943AF8 /* Pinky.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Pinky.hpp; sourceTree = "<group>"; };
 		7FF918E11DCC16C400EBB7FA /* Jogador.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Jogador.cpp; sourceTree = "<group>"; };
 		7FF918E21DCC16C400EBB7FA /* Jogador.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Jogador.hpp; sourceTree = "<group>"; };
 		7FF918E41DCC205700EBB7FA /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
@@ -125,8 +140,18 @@
 				7F408F271DCCF745005EDEBA /* Processador.hpp */,
 				7F0235AA1DCCFB5000F204FC /* Ladrilho.cpp */,
 				7F0235AB1DCCFB5000F204FC /* Ladrilho.hpp */,
+				7FEF3C8F1DDF711E00943AF8 /* Pinky.cpp */,
+				7FEF3C901DDF711E00943AF8 /* Pinky.hpp */,
 				7F0235B51DCD0E8A00F204FC /* Placar.cpp */,
 				7F0235B61DCD0E8A00F204FC /* Placar.hpp */,
+				7FEF3C831DDF5F7400943AF8 /* Inimigo.cpp */,
+				7FEF3C841DDF5F7400943AF8 /* Inimigo.hpp */,
+				7FEF3C861DDF6B6400943AF8 /* Blinky.cpp */,
+				7FEF3C871DDF6B6400943AF8 /* Blinky.hpp */,
+				7FEF3C891DDF6C5F00943AF8 /* Clyde.cpp */,
+				7FEF3C8A1DDF6C5F00943AF8 /* Clyde.hpp */,
+				7FEF3C8C1DDF6D0A00943AF8 /* Inky.cpp */,
+				7FEF3C8D1DDF6D0A00943AF8 /* Inky.hpp */,
 			);
 			path = PacManX;
 			sourceTree = "<group>";
@@ -198,16 +223,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FEF3C881DDF6B6400943AF8 /* Blinky.cpp in Sources */,
 				7F0235B41DCD0AED00F204FC /* Tabuleiro.cpp in Sources */,
 				7F0235B31DCD0AE700F204FC /* Ladrilho.cpp in Sources */,
 				7F0235B21DCD0AE100F204FC /* Ator.cpp in Sources */,
 				7F0235B11DCD0ADB00F204FC /* Jogador.cpp in Sources */,
+				7FEF3C8B1DDF6C5F00943AF8 /* Clyde.cpp in Sources */,
 				7F0235B71DCD0E8A00F204FC /* Placar.cpp in Sources */,
 				7F0235B01DCD0AD400F204FC /* Eventos.cpp in Sources */,
+				7FEF3C8E1DDF6D0A00943AF8 /* Inky.cpp in Sources */,
 				7F0235AF1DCD0ACD00F204FC /* VisaoJogador.cpp in Sources */,
 				7F0235AE1DCD0AC300F204FC /* Observador.cpp in Sources */,
 				7F0235AD1DCD0AB700F204FC /* Game.cpp in Sources */,
+				7FEF3C911DDF711E00943AF8 /* Pinky.cpp in Sources */,
 				7F42995C1D970ADF004F7D01 /* main.cpp in Sources */,
+				7FEF3C851DDF5F7400943AF8 /* Inimigo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

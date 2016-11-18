@@ -12,10 +12,15 @@
 #include <time.h>
 
 #include "Jogador.hpp"
+#include "Inimigo.hpp"
+#include "Blinky.hpp"
+#include "Pinky.hpp"
+#include "Inky.hpp"
+#include "Clyde.hpp"
 #include "Placar.hpp"
 #include "VisaoJogador.hpp"
 #include "direcao.hpp"
-#include "tabuleiro.hpp"
+#include "Tabuleiro.hpp"
 #include "Observador.hpp"
 #include "Eventos.hpp"
 
@@ -25,7 +30,11 @@ private:
     Tabuleiro tabuleiro;
     Placar placar;
     
-    // inimigos
+    Pinky pinky;
+    Blinky blinky;
+    Inky inky;
+    Clyde clyde;
+    std::vector<Inimigo*> inimigos;
     
     char vidas;
     float tempo;

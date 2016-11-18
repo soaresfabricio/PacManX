@@ -39,6 +39,8 @@ int main(int argc, char ** argv) {
     // Trata recebimento de teclas
     glutKeyboardFunc(&Processador::tecla);
     glutSpecialFunc(&Processador::teclaEspecial);
+    
+
 
     // Inicia renderização
     Processador::iniciaGL(1024, 768);

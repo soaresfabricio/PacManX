@@ -14,8 +14,8 @@
 #include <map>
 
 #include "Eventos.hpp"
-#include "direcao.hpp"
-#include "ladrilho.hpp"
+#include "Direcao.hpp"
+#include "Ladrilho.hpp"
 // #include explosao.hpp
 #include "VisaoJogador.hpp"
 #include "Ator.hpp"

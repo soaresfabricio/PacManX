@@ -9,24 +9,49 @@ void Game::carregar(){
     jogador.setGame(this);
     redefinir();
     Eventos::getInstancia()->adicionar(this, "jogadormorreu");
-    //placar.redefinir();
+    placar.reiniciar();
 }
 
 void Game::redefinir(){
-    //inimigos.clear();
     
+    inimigos.clear();
     
+    blinky = Blinky();
+    pinky = Pinky();
+    inky = Inky();
+    clyde = Clyde();
     
-    /**
-     /
-     / ADICIONAR INSTANCIA DE INIMIGOS AQUI
-     /
-     */
+    blinky.setGame(this);
+    blinky.setJogador(&jogador);
     
+    pinky.setGame(this);
+    pinky.setJogador(&jogador);
     
+    inky.setGame(this);
+    inky.setJogador(&jogador);
+    inky.setBlinky(&blinky);
+    
+    clyde.setGame(this);
+    clyde.setJogador(&jogador);
+    
+    inimigos.push_back(&blinky);
+    inimigos.push_back(&pinky);
+    inimigos.push_back(&inky);
+    inimigos.push_back(&clyde);
     
     jogador.setLadrilhoAtual(tabuleiro.getLadrilho(1,1));
+    blinky.setLadrilhoAtual(tabuleiro.getLadrilho(10,10));
+    pinky.setLadrilhoAtual(tabuleiro.getLadrilho(13,13));
+    inky.setLadrilhoAtual(tabuleiro.getLadrilho(15,13));
+    clyde.setLadrilhoAtual(tabuleiro.getLadrilho(15,13));
+    
+    for (unsigned int i = 0; i < inimigos.size(); i++) {
+        inimigos[i]->iniciar();
+    }
+    
     estadoJogo = executando;
+    
+
     
 }
 
@@ -71,9 +96,9 @@ void Game::atualiza(float ticks){
     placar.atualiza(ticks);
     
     
-    /**
-     / TEMPORIZAR INIMIGOS AQUI
-     */
+    for (unsigned int i = 0; i < inimigos.size(); i++) {
+        inimigos[i]->atualiza(ticks);
+    }
     
     
     tabuleiro.atualiza(ticks, tempo);
@@ -81,6 +106,8 @@ void Game::atualiza(float ticks){
 }
 
 void Game::processa(){
+
+    
     glDepthMask(GL_TRUE);
     
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
@@ -89,46 +116,41 @@ void Game::processa(){
     float lookAt = 1 + tempo * 2.5;
     if (lookAt > 25) lookAt = 25;
     
-    //gluLookAt (playerPos.x, playerPos.y, -18.0 + lookAt, playerPos.x/2, playerPos.y/2, playerPos.z, 0.0, 1.0, 0.0);
-    //gluLookAt (0, -20, 18, 0, -2, playerPos.z, 0.0, 1.0, 0.0);
-    // Close
-    
     ilumina();
     
     float inicioZ = -4;
     float finalZ = posicaoJogador.z;
-    float inicioY = posicaoJogador.y - 16;
-    float fimY = posicaoJogador.y;
+    float startY = posicaoJogador.y - 16;
+    float endY = posicaoJogador.y;
     
-    float distanciaProxima = 100;
+    float distanciaMaisProxima = 100;
     
-//    for (unsigned int i = 0; i < inimigos.size(); i++) {
-//        ponto a = jogador.getPosicao();
-//        ponto b = inimigos[i]->getPosicao();
-//        
-//        float dx = (float)a.x - (float)b.x;
-//        float dy = (float)a.y - (float)b.y;
-//        if (dx < 0.0) dx = 0.0-dx;
-//        if (dy < 0.0) dy = 0.0-dy;
-//        
-//        float distancia = sqrt((dx*dx) + (dy*dy));
-//        
-//        if (distancia < distanciaProxima) {
-//            distanciaProxima = distancia;
-//        }
-//        if (distancia <= 1.1 && (inimigos[i]->getEstado() == PERSEGUINDO || inimigos[i]->getEstado() == ESPALHADO)) {
-//            estadoJogo = parado;
-//            jogador.setMorrendo();
-//            break;
-//        }
-//    }
+    for (unsigned int i = 0; i < inimigos.size(); i++) {
+        ponto a = jogador.getPosicao();
+        ponto b = inimigos[i]->getPosicao();
+        
+        float diffX = (float)a.x - (float)b.x;
+        float diffY = (float)a.y - (float)b.y;
+        if (diffX < 0.0) diffX = 0.0-diffX;
+        if (diffY < 0.0) diffY = 0.0-diffY;
+        
+        float distance = sqrt((diffX*diffX) + (diffY*diffY));
+        
+        if (distance < distanciaMaisProxima) {
+            distanciaMaisProxima = distance;
+        }
+        if (distance <= 1.1 && (inimigos[i]->getEstado() == PERSEGUINDO || inimigos[i]->getEstado() == DISPERSO)) {
+            estadoJogo = parado;
+            jogador.setMorrendo();
+            break;
+        }
+    }
     
-    //gluLookAt (playerPos.x / 3.5, playerPos.y - 16, -4, playerPos.x / 3.5, playerPos.y, playerPos.z, 0.0, 1.0, 0.0);
     
     /*
      float zoomInFrom = 15;
-     float multiplier = closestDistance > zoomInFrom ? 0.0 : 0.4 * (1.0-(1.0/zoomInFrom)*closestDistance);
-     gluLookAt (playerPos.x, startY - (startY - endY)*multiplier, startZ - (startZ - endZ)*multiplier, playerPos.x, playerPos.y, playerPos.z, 0.0, 1.0, 0.0);
+     float multiplier = distanciaMaisProxima > zoomInFrom ? 0.0 : 0.4 * (1.0-(1.0/zoomInFrom)*distanciaMaisProxima);
+     gluLookAt (posicaoJogador.x, startY - (startY - endY)*multiplier, inicioZ - (inicioZ - finalZ)*multiplier, posicaoJogador.x, posicaoJogador.y, posicaoJogador.z, 0.0, 1.0, 0.0);
      */
     
     float lookY = posicaoJogador.y + 2;
@@ -140,15 +162,13 @@ void Game::processa(){
     if (inicioX < -5) inicioX = -5;
     else if (inicioX > 5) inicioX = 5;
     
-    //std::cout << lookY << "\n";
+    startY = lookY - 18;
     
-    inicioY = lookY - 18;
+    gluLookAt(inicioX, startY, inicioZ, inicioX, lookY, posicaoJogador.z, 0.0, 1.0, 0.0);
     
-    gluLookAt(inicioX, inicioY, inicioZ, inicioX, lookY, posicaoJogador.z, 0.0, 1.0, 0.0);
-    
-//    for (unsigned int i = 0; i < inimigos.size(); i++) {
-//        inimigos[i]->processa();
-//    }
+    for (unsigned int i = 0; i < inimigos.size(); i++) {
+        inimigos[i]->processa();
+    }
     
     tabuleiro.processa();
     jogador.processa();
