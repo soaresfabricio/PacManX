@@ -23,7 +23,7 @@
 
 #include "Jogador.hpp"
 #include "direcao.hpp"
-#include "ladrilho.hpp"
+#include "Ladrilho.hpp"
 
 
 
@@ -87,7 +87,6 @@ private:
                 resultado = somaCores < 3.0;
             }
         }
-        // std::cout << resultado << "\n";
         return resultado;
     };
     

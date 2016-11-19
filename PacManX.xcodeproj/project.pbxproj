@@ -21,6 +21,7 @@
 		7F42996B1D971664004F7D01 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996A1D971664004F7D01 /* GLUT.framework */; };
 		7F42996D1D971669004F7D01 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F42996C1D971669004F7D01 /* OpenGL.framework */; };
 		7F42996E1D971696004F7D01 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4299681D97165B004F7D01 /* Cocoa.framework */; };
+		7F4AEB511DDFDD5000FB4184 /* darkmetal.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7F4AEB501DDFDC7500FB4184 /* darkmetal.bmp */; };
 		7FEF3C851DDF5F7400943AF8 /* Inimigo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF3C831DDF5F7400943AF8 /* Inimigo.cpp */; };
 		7FEF3C881DDF6B6400943AF8 /* Blinky.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF3C861DDF6B6400943AF8 /* Blinky.cpp */; };
 		7FEF3C8B1DDF6C5F00943AF8 /* Clyde.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FEF3C891DDF6C5F00943AF8 /* Clyde.cpp */; };
@@ -29,14 +30,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7F4299561D970ADF004F7D01 /* CopyFiles */ = {
+		7F4AEB4D1DDFD94D00FB4184 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				7F4AEB511DDFDD5000FB4184 /* darkmetal.bmp in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -59,6 +61,9 @@
 		7F4299681D97165B004F7D01 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		7F42996A1D971664004F7D01 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		7F42996C1D971669004F7D01 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		7F4AEB401DDFAD6400FB4184 /* BMPLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BMPLoader.cpp; sourceTree = "<group>"; };
+		7F4AEB411DDFAD6400FB4184 /* BMPLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BMPLoader.hpp; sourceTree = "<group>"; };
+		7F4AEB501DDFDC7500FB4184 /* darkmetal.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = darkmetal.bmp; sourceTree = "<group>"; };
 		7F7E383A1DBAA0BC008360A3 /* Temporizador.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Temporizador.cpp; sourceTree = "<group>"; tabWidth = 4; };
 		7F7E383B1DBAA0BC008360A3 /* Temporizador.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Temporizador.hpp; sourceTree = "<group>"; };
 		7FB874AA1D98320A00C11D34 /* mapa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapa.png; sourceTree = "<group>"; };
@@ -124,6 +129,7 @@
 		7F42995A1D970ADF004F7D01 /* PacManX */ = {
 			isa = PBXGroup;
 			children = (
+				7F4AEB501DDFDC7500FB4184 /* darkmetal.bmp */,
 				7FF918E71DCC2C5900EBB7FA /* Tabuleiro.cpp */,
 				7FF918E81DCC2C5900EBB7FA /* Tabuleiro.hpp */,
 				7FB874AA1D98320A00C11D34 /* mapa.png */,
@@ -167,6 +173,8 @@
 				7F12C80C1DDF7AB5002CA562 /* ParticulaSangue.hpp */,
 				7F12C80E1DDF7BDD002CA562 /* Explosao.cpp */,
 				7F12C80F1DDF7BDD002CA562 /* Explosao.hpp */,
+				7F4AEB401DDFAD6400FB4184 /* BMPLoader.cpp */,
+				7F4AEB411DDFAD6400FB4184 /* BMPLoader.hpp */,
 			);
 			path = PacManX;
 			sourceTree = "<group>";
@@ -190,7 +198,7 @@
 			buildPhases = (
 				7F4299541D970ADF004F7D01 /* Sources */,
 				7F4299551D970ADF004F7D01 /* Frameworks */,
-				7F4299561D970ADF004F7D01 /* CopyFiles */,
+				7F4AEB4D1DDFD94D00FB4184 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -352,30 +360,8 @@
 		7F4299601D970ADF004F7D01 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "/usr/local/Cellar/imagemagick/6.9.5-10/**";
 				LIBRARY_SEARCH_PATHS = "/opt/local/lib\n\n";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_LDFLAGS = (
-					"-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-I/usr/local/Cellar/imagemagick/6.9.5-10/include/ImageMagick-6\n-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-I/usr/local/Cellar/imagemagick/6.9.5-10/include/ImageMagick-6\n-L/usr/local/Cellar/imagemagick/6.9.5-10/lib",
-					"-lMagick++-6.Q16",
-					"-lMagickWand-6.Q16",
-					"-lMagickCore-6.Q16\n-L/usr/local/Cellar/imagemagick/6.9.5-10/lib",
-					"-lMagick++-6.Q16",
-					"-lMagickWand-6.Q16",
-					"-lMagickCore-6.Q16\n\n",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -383,30 +369,8 @@
 		7F4299611D970ADF004F7D01 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "/usr/local/Cellar/imagemagick/6.9.5-10/**";
 				LIBRARY_SEARCH_PATHS = "/opt/local/lib\n\n";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_LDFLAGS = (
-					"-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-I/usr/local/Cellar/imagemagick/6.9.5-10/include/ImageMagick-6\n-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-DMAGICKCORE_HDRI_ENABLE=0",
-					"-DMAGICKCORE_QUANTUM_DEPTH=16",
-					"-I/usr/local/Cellar/imagemagick/6.9.5-10/include/ImageMagick-6\n-L/usr/local/Cellar/imagemagick/6.9.5-10/lib",
-					"-lMagick++-6.Q16",
-					"-lMagickWand-6.Q16",
-					"-lMagickCore-6.Q16\n-L/usr/local/Cellar/imagemagick/6.9.5-10/lib",
-					"-lMagick++-6.Q16",
-					"-lMagickWand-6.Q16",
-					"-lMagickCore-6.Q16\n\n",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

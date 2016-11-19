@@ -40,7 +40,6 @@ void Placar::reiniciar() {
 
 void Placar::onSignal(std::string nome) {
     
-    std::cout << pontuacao << std::endl;
     
     if (nome == "energizer") {
         pontuacaoFantasmas = 1000;

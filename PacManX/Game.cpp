@@ -1,11 +1,13 @@
 #include "Game.hpp"
 
 void Game::carregar(){
-    vidas = 3;
+    vidas = 5;
     visaoJogador.setRaio(0.15);
     visaoJogador.setRotacao(280);
     srand(time(NULL));
     tabuleiro.carrega();
+    
+    
     jogador.setGame(this);
     redefinir();
     Eventos::getInstancia()->adicionar(this, "playerdied");
@@ -69,7 +71,7 @@ void Game::onSignal(std::string nome) {
 void Game::ilumina(){
     glEnable(GL_LIGHTING);
     
-    GLfloat position[] = { 0.5, -0.3, 1, 0 };
+    GLfloat position[] = { -0.5, -0.3, 1, 0 };
     glLightfv(GL_LIGHT0, GL_POSITION, position);
     
     GLfloat ambient[] = { 0.1, 0.1, 0.1 };
@@ -170,6 +172,8 @@ void Game::processa(){
         inimigos[i]->processa();
     }
     
+    
+    
     tabuleiro.processa();
     jogador.processa();
     
@@ -204,12 +208,16 @@ void Game::processa(){
     
     glDepthMask(GL_TRUE);
     
+    
+    
     for (int i = 0; i < vidas; i++) {
         glPushMatrix();
         glTranslatef(2.3 - 0.4 * i, 1.75, -5);
         visaoJogador.processa((int)(tempo * 50 + i * 20) % 360, 180 - 30, true);
         glPopMatrix();
     }
+    
+    
     
 }
 

@@ -8,6 +8,9 @@
 
 #include "Processador.hpp"
 
+typedef std::bitset<8> BYTE;
+
+
 void Processador::iniciaGL(int largura, int altura){
     game.carregar();
     glClearColor(0.0, 0.0, 0.0, 0.5);
@@ -70,6 +73,7 @@ void Processador::desenha() {
     ultimoClock = agora;
     
     glLoadIdentity();
+    
     game.atualiza(ticks);
     game.processa();
     

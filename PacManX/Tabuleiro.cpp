@@ -8,6 +8,7 @@
 
 #include "Tabuleiro.hpp"
 
+
 void Tabuleiro::desenhaParedePequena(){
     
         std::vector<ponto> pontos;
@@ -79,6 +80,7 @@ void Tabuleiro::desenhaCantoPequeno() {
         glVertex3f(p.x, p.y, -0.02);
     }
     glEnd ();
+  
     
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < pontos.size(); i++) {
@@ -134,6 +136,8 @@ void Tabuleiro::desenhaParedeGrande() {
     }
     glColor3f(0,0,1);
     glEnd ();
+    
+    
 }
 
 
@@ -176,6 +180,7 @@ void Tabuleiro::desenhaCantoGrande(bool isInset) {
     }
     glEnd ();
     
+
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < pontos.size(); i++) {
         ponto p = opontos[i];
@@ -190,25 +195,26 @@ void Tabuleiro::desenhaCantoGrande(bool isInset) {
         glVertex3f(p.x, p.y, -0.02);
     }
     glEnd ();
+
     
-    /*
-     glColor3f(1,1,1);
-     glBegin(GL_LINES);
-     for (unsigned int i = 0; i < pontos.size(); i++) {
-     point p = opontos[i];
-     point n = normals[i];
-     glVertex3f(p.x, p.y, -0.02);
-     glVertex3f(p.x+(0-n.x), p.y+(0-n.y), -0.02);
-     }
-     glEnd ();
-     */
+    
+//     glColor3f(1,1,1);
+//     glBegin(GL_LINES);
+//     for (unsigned int i = 0; i < pontos.size(); i++) {
+//     ponto p = opontos[i];
+//     ponto n = normais[i];
+//     glVertex3f(p.x, p.y, -0.02);
+//     glVertex3f(p.x+(0-n.x), p.y+(0-n.y), -0.02);
+//     }
+//     glEnd ();
+//    
     
     glColor3f(0, 0, 1);
     
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < opontos.size(); i++) {
         ponto p = pontos[i];
-        //glNormal3f(0-(p.x-0.5), 0-(p.y-0.5), 0);
+        glNormal3f(0-(p.x-0.5), 0-(p.y-0.5), 0);
         glNormal3f(0,0,1);
         glVertex3f(opontos[i].x, opontos[i].y, -0.02);
         //glNormal3f((p.x-0.5), (p.y-0.5), 0);
@@ -366,6 +372,8 @@ void Tabuleiro::desenhaCanto(float xc, float yc, float z, float start, bool inte
     }
     glEnd();
     
+    
+
     glBegin(GL_POLYGON);
     x = (float)raio * cos(359 * PI/180.0f);
     y = (float)raio * sin(359 * PI/180.0f);
@@ -390,10 +398,15 @@ void Tabuleiro::desenhaCanto(float xc, float yc, float z, float start, bool inte
     else {
         glNormal3f(0, 0, 1);
         glVertex3f(0.5, -0.5, -0.02);
+
         glNormal3f(0, 0, 1);
         glVertex3f(0.5, 0.5, -0.02);
     }
     glEnd();
+    
+    
+    
+    
     
     glRotatef(-start, 0, 0, 1);
     glPopMatrix();
@@ -403,12 +416,37 @@ void Tabuleiro::criaNormal(float x, float y, float z) {
     glNormal3f(x,y,z);
 }
 
+
+
 void Tabuleiro::criaTabuleiro() {
     glNewList(tabuleiroDisplayList, GL_COMPILE);
-    glColor3f(0.0, 0.0, 0.8);
     
     int alturaTabuleiro = getAltura();
     int larguraTabuleiro = getLargura();
+    
+    
+    glPushMatrix();
+    //glLoadIdentity();
+    glEnable(GL_TEXTURE_2D);
+
+    glBegin(GL_QUADS);
+    
+    glColor3d(1, 1, 1);
+    glTexCoord2f(-4.0f, -4.0f);
+    glVertex3d(-13.5,-14,-20);
+    
+    glTexCoord2f(4.0f, -4.0f);
+    glVertex3d(13.5,-14,-20);
+    
+    glTexCoord2f(4.0f, 4.0f);
+    glVertex3d(13.5,15.5,-20);
+    
+    glTexCoord2f(-4.0f, 4.0f);
+    glVertex3d(-13.5,15.5,-20);
+    glEnd();
+    
+    glDisable(GL_TEXTURE_2D);
+    glPopMatrix();
     
     for (int x = 0; x < larguraTabuleiro; x++) {
         for (int y = 0; y < alturaTabuleiro; y++) {
@@ -478,6 +516,7 @@ void Tabuleiro::criaTabuleiro() {
         }
     }
     
+    
     glEndList();
 }
 
@@ -490,6 +529,8 @@ void Tabuleiro::desenhaParede(int x, int y, float * cor) {
 }
 
 void Tabuleiro::carrega() {
+
+    
     std::vector<std::string> mapa;
     
     mapa.push_back("BBBBBBBBBBBBBBBBBBBBBBBBBBBB");
@@ -524,6 +565,7 @@ void Tabuleiro::carrega() {
     mapa.push_back("BGGGGGGGGGGGGGGGGGGGGGGGGGGB");
     mapa.push_back("BBBBBBBBBBBBBBBBBBBBBBBBBBBB");
     
+    
     tabuleiroDisplayList = glGenLists(1);
     
     largura = 28;
@@ -549,7 +591,12 @@ void Tabuleiro::carrega() {
             pixels[x][altura - (y + 1)] = cor;
         }
     }
+    
+    
+    
+    
     criaTabuleiro();
+    
 }
 
 int Tabuleiro::getLargura() {
@@ -580,6 +627,7 @@ void Tabuleiro::atualiza(float ticks, float tempo) {
 void Tabuleiro::processa() {
    
     
+    
     //glTranslatef(0,0,-0.5);
     glCallList(tabuleiroDisplayList);
     //glTranslatef(0,0,0.5);
@@ -591,5 +639,6 @@ void Tabuleiro::processa() {
         }   
     }
 
+    
     
 }
