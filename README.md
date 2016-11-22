@@ -8,13 +8,17 @@ All rights are reserved to [BANDAI NAMCO](https://www.bandainamcoent.com)™.
 
 - [FREEGLUT](http://freeglut.sourceforge.net/index.php#download) - OpenGL Toolkit
 - [SFML](http://www.sfml-dev.org) - Sound Library
+- [QT's qmake](http://doc.qt.io/qt-4.8/installation.html) - To compile (see below)
+
+## Compiling and Running
+
+You'll need to run ``qmake`` to create the proper ``Makefile`` for this project, then run ``make`` on the very same directory. The binary file will be named ``pacmanx``.
 
 ## Authors
 
-- **Fabrício Soares**(me)
+- **Fabrício Soares** (me)
 - **[Yooh Bezerra](https://github.com/nxzx)**
 - **[Wesnydy Ribeiro](https://github.com/wesnydy)**
-
 
 ## License
 
