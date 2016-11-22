@@ -44,6 +44,7 @@ void Placar::onSignal(std::string nome) {
     if (nome == "energizer") {
         pontuacaoFantasmas = 1000;
         pontuacao += 50;
+    
         tocaSom("energizer.wav");
     }
     else if (nome == "pellet") {

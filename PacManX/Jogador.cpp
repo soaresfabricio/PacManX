@@ -47,6 +47,7 @@ void Jogador::setMorrendo() {
         progressoMorte = 0;
         explosao.reiniciar();
     }
+
 }
 
 void Jogador::resolvePosicao(float m) {
@@ -107,9 +108,9 @@ void Jogador::processa() {
 
     glPushMatrix();
 
-    glTranslatef(posicaoAtual.x, posicaoAtual.y, -19.5);
+    glTranslatef(posicaoAtual.x, posicaoAtual.y, -19.48);
 
-    float direcaoDesenho = 0;
+    static float direcaoDesenho;
     switch (direcao) {
         case esquerda:
             direcaoDesenho = 90;
@@ -124,7 +125,7 @@ void Jogador::processa() {
             direcaoDesenho = 0;
             break;
         case nenhuma:
-            direcaoDesenho = 0; break;
+            break;
     }
 
     float limiar = 0;
@@ -148,7 +149,7 @@ void Jogador::processa() {
         progressoMorte += ultimosTicks * 1;
     }
 
-    visaoJogador.setRaio(0.7);
+    visaoJogador.setRaio(0.6);
     if (direcao == nenhuma) {
         visaoJogador.processa(direcaoDesenho, 180-25, estado == VIVO);
     }

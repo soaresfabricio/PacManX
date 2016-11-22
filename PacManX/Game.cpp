@@ -51,11 +51,11 @@ void Game::redefinir(){
     inimigos.push_back(&inky);
     inimigos.push_back(&clyde);
 
-    jogador.setLadrilhoAtual(tabuleiro.getLadrilho(1,1));
+    jogador.setLadrilhoAtual(tabuleiro.getLadrilho(10,1));
     blinky.setLadrilhoAtual(tabuleiro.getLadrilho(10,10));
-    pinky.setLadrilhoAtual(tabuleiro.getLadrilho(13,13));
-    inky.setLadrilhoAtual(tabuleiro.getLadrilho(15,13));
-    clyde.setLadrilhoAtual(tabuleiro.getLadrilho(15,13));
+    pinky.setLadrilhoAtual(tabuleiro.getLadrilho(12,13));
+    inky.setLadrilhoAtual(tabuleiro.getLadrilho(16,13));
+    clyde.setLadrilhoAtual(tabuleiro.getLadrilho(8,7));
 
     for (unsigned int i = 0; i < inimigos.size(); i++) {
         inimigos[i]->iniciar();
@@ -79,22 +79,21 @@ void Game::onSignal(std::string nome) {
 void Game::ilumina(){
     glEnable(GL_LIGHTING);
 
-    GLfloat position[] = { -0.5, -0.3, 1, 0 };
-    glLightfv(GL_LIGHT0, GL_POSITION, position);
+    GLfloat position[] = { 0.5, 2, 1, 0 };
+     glLightfv(GL_LIGHT0, GL_POSITION, position);
 
-    GLfloat ambient[] = { 0.1, 0.1, 0.1 };
-    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+     GLfloat ambient[] = { 0.1, 0.1, 0.1 };
+     glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
 
-    GLfloat diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+     GLfloat diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
+     glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
 
-    GLfloat specular[] = { 1.0, 1.0, 1.0, 1.0 };
-    glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
-
+     GLfloat specular[] = { 1.0, 1.0, 1.0, 1.0 };
+     glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
     glEnable(GL_LIGHT0);
 
     glMateriali(GL_FRONT, GL_SHININESS, 96);
-    float mcolor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float mcolor[] = { 1.0f, 1.0f, 1.0f, 0.6f };
     glMaterialfv(GL_FRONT, GL_SPECULAR, mcolor);
 
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
@@ -155,60 +154,48 @@ void Game::processa(){
     }
 
 
-  //   float lookY = posicaoJogador.y + 2;
-  //  float startX = posicaoJogador.x;
-   //
-  //  if (lookY < -5.5) lookY = -5.5;
-  //  else if (lookY > 9.5) lookY = 9.5;
-   //
-  //  if (startX < -5) startX = -5;
-  //  else if (startX > 5) startX = 5;
-   //
-  //  startY = lookY - 18;
-  //
-  // if (jogador.getDirecao() == direita) {
-  //   posicaoJogador.x += 10;
-  // }
+    float lookY = posicaoJogador.y + 2;
+   float startX = posicaoJogador.x;
 
-  static float eyeX = ((posicaoJogador.x ) );
-  static float eyeY =  ((posicaoJogador.y - 15) );
-  static float eyeZ =  ((posicaoJogador.z + 20) );
-  static float upX = 0.0;
-  static float upY = 0.0;
-  static float upZ = 1.0;
+   if (lookY < -5.5) lookY = -5.5;
+   else if (lookY > 9.5) lookY = 9.5;
+
+   if (startX < -5) startX = -5;
+   else if (startX > 5) startX = 5;
+
+   startY = lookY - 18;
+   float startZ = -4;
+
+
+ static float eyeX, eyeY, eyeZ;
+
+
 
   if (jogador.getDirecao() == direita) {
 
     tipoDirecao = 1;
 
-     eyeX = eyeX + ((posicaoJogador.x - 15) - eyeX) * (0.05);
+     eyeX = eyeX + ((posicaoJogador.x - 10) - eyeX) * (0.05);
      eyeY = eyeY + ((posicaoJogador.y) - eyeY) * (0.05);
-     eyeZ = eyeZ + ((posicaoJogador.z + 5) - eyeZ) * (0.05);
+     eyeZ = eyeZ + ((posicaoJogador.z + 4) - eyeZ) * (0.5);
 
       //eyeX =  posicaoJogador.x - 10;
       // eyeY =  posicaoJogador.y ;
       // eyeZ =  posicaoJogador.z + 3 ;
 
-      upX = 0.0;
-      upY = 0.0;
-      upZ = 1.0;
   }
 
   if (jogador.getDirecao() == esquerda) {
 
      tipoDirecao = 2;
 
-     eyeX = eyeX + ((posicaoJogador.x + 15) - eyeX) * (0.05);
+     eyeX = eyeX + ((posicaoJogador.x + 10) - eyeX) * (0.05);
      eyeY = eyeY + ((posicaoJogador.y) - eyeY) * (0.05);
-     eyeZ = eyeZ + ((posicaoJogador.z+5) - eyeZ) * (0.05);
+     eyeZ = eyeZ + ((posicaoJogador.z+4) - eyeZ) * (0.5);
 
       //eyeX = posicaoJogador.x + 10;
       // eyeY = posicaoJogador.y ;
       // eyeZ =  posicaoJogador.z + 3 ;
-
-      upX = 0.0;
-      upY = 0.0;
-      upZ = 1.0;
   }
 
   if (jogador.getDirecao() == cima) {
@@ -216,17 +203,9 @@ void Game::processa(){
     tipoDirecao = 0;
 
     eyeX = eyeX + ((posicaoJogador.x) - eyeX) * (0.05);
-    eyeY = eyeY + ((posicaoJogador.y - 15) - eyeY) * (0.05);
-    eyeZ = eyeZ + ((posicaoJogador.z + 5) - eyeZ) * (0.05);
+    eyeY = eyeY + ((posicaoJogador.y - 10) - eyeY) * (0.05);
+    eyeZ = eyeZ + ((posicaoJogador.z + 4) - eyeZ) * (0.5);
 
-      //
-      // eyeX =  posicaoJogador.x;
-      // //eyeY =  posicaoJogador.y - 10;
-      // eyeZ =  posicaoJogador.z + 3 ;
-
-      upX = 0.0;
-      upY = 0.0;
-      upZ = 1.0;
   }
 
   if (jogador.getDirecao() == baixo) {
@@ -235,23 +214,14 @@ void Game::processa(){
 
     eyeX = eyeX + ((posicaoJogador.x) - eyeX) * (0.05);
     eyeY = eyeY + ((posicaoJogador.y + 10) - eyeY) * (0.05);
-    eyeZ = eyeZ + ((posicaoJogador.z + 5) - eyeZ) * (0.05);
-
-
-      // eyeX =  posicaoJogador.x;
-      // //eyeY =  posicaoJogador.y + 10;
-      // eyeZ =  posicaoJogador.z + 3 ;
-
-      upX = 0.0;
-      upY = 0.0;
-      upZ = 1.0;
+    eyeZ = eyeZ + ((posicaoJogador.z + 4) - eyeZ) * (0.5);
   }
 
 
 
    gluLookAt(eyeX , eyeY, eyeZ,
              posicaoJogador.x , posicaoJogador.y, posicaoJogador.z,
-             upX, upY, upZ);
+             0, 0, 1);
 
 
     tabuleiro.processa();

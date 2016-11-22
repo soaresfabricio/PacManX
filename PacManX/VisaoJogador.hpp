@@ -18,9 +18,10 @@ class VisaoJogador{
 private:
     ponto normalizaVetor(ponto v);
     double raio;
-    double rotacao;
-    
+
 public:
+    double rotacao;
+
     void setRotacao(double r);
     void setRaio(double r);
     void processa(float direcao, float abertura, bool desenhado);

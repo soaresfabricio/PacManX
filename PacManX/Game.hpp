@@ -33,12 +33,13 @@
 class Game : public Observador {
 private:
 
+    int tipoDirecao;
+
 
     VisaoJogador visaoJogador;
     Tabuleiro tabuleiro;
     Placar placar;
 
-    int tipoDirecao = 0;
 
     Pinky pinky;
     Blinky blinky;
@@ -56,6 +57,7 @@ private:
     sf::SoundBuffer* bufferSom;
 
 public:
+
     Jogador jogador;
     virtual void onSignal(std::string nome);
     void carregar();

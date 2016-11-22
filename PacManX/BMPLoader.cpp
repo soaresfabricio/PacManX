@@ -6,6 +6,9 @@
 //  Copyright © 2016 Fabrício, Yooh e Wesnydy. All rights reserved.
 //
 
+
+#pragma once
+
 #include "BMPLoader.hpp"
 
 #define STD_OFFSET 54
@@ -16,7 +19,7 @@ BMPloader::BMPloader(const string filename) {
     mImage = NULL;
     mWidth = mHeight = 0;
     mIsOK  = false;
-    
+
     infile = new ifstream(filename.c_str(), ios::in | ios::binary);
     if (!infile->fail()) {
         char ch1, ch2;
@@ -81,4 +84,3 @@ const unsigned int BMPloader::getLong() {
     unsigned int low = getShort();
     return getShort() * 0x10000 + low;
 }
-

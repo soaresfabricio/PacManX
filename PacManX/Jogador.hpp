@@ -45,7 +45,6 @@ private:
     float ultimosTicks;
 
     void resolvePosicao(float movemento);
-    VisaoJogador visaoJogador;
 
     sf::Sound* som;
     sf::SoundBuffer* bufferSom;
@@ -53,6 +52,8 @@ private:
 
 
 public:
+  VisaoJogador visaoJogador;
+
     ESTADOJOGADOR getEstado();
     void setMorrendo();
 

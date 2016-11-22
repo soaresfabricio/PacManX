@@ -27,9 +27,20 @@ void Processador::iniciaGL(int largura, int altura){
     glEnable(GL_DEPTH_TEST);
     glShadeModel(GL_SMOOTH);
 
+    glEnable( GL_LINE_SMOOTH );
+    glEnable( GL_POLYGON_SMOOTH );
+    glEnable(GL_POINT_SMOOTH);
+
+    glHint( GL_LINE_SMOOTH_HINT, GL_NICEST );
+    glHint( GL_POLYGON_SMOOTH_HINT, GL_NICEST );
+    glHint(GL_POINT_SMOOTH, GL_NICEST);
+
+
+
+
     glLoadIdentity();
 
-    gluPerspective(45.0f, (GLfloat)largura/(GLfloat)altura, 0.1f, 100.0f);
+    //gluPerspective(45.0f, (GLfloat)largura/(GLfloat)altura, 0.1f, 100.0f);
 
     glMatrixMode(GL_MODELVIEW);
 
@@ -45,10 +56,11 @@ void Processador::redimensiona(int largura, int altura) {
     glLoadIdentity();
 
     //gluPerspective(55.0f,(GLfloat)largura/(GLfloat)altura,0.1f,300.0f);
-    gluPerspective(45.0f,(GLfloat)largura/(GLfloat)altura,0.1f, 500.0f);
+    gluPerspective(45.0f,(GLfloat)largura/(GLfloat)altura,0.1f, 90.0f);
 
     glMatrixMode(GL_MODELVIEW);
 };
+
 
 
 void Processador::desenha() {
@@ -57,12 +69,12 @@ void Processador::desenha() {
     float agora = temporizador.getSegundos();
     float ticks = agora - ultimoClock;
 
-    if (int(ultimoClock) != int(agora)) {
-        ultimoFps = fps;
-        std::cout << "FPS: " << fps << "\n";
-        std::cout << "--------\n";
-        fps = 0;
-    }
+    // if (int(ultimoClock) != int(agora)) {
+    //     ultimoFps = fps;
+    //     std::cout << "FPS: " << fps << std::endl;
+    //     fps = 0;
+    // }
+
 
     bool pausado = game.ehPausado();
     if (pausado) {

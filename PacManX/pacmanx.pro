@@ -3,36 +3,35 @@
 ######################################################################
 
 TARGET = pacmanx
+QMAKE_POST_LINK += ./pacmanx
 
-RESFILES.files = darkmetal.bmp \
-		explosion.wav \
-		swing1.wav \
-		swing2.wav \
-		energizer.wav \
-		eaten.wav \
-		theme.ogg
-RESFILES.path = Contents/Resources
-QMAKE_BUNDLE_DATA += RESFILES
+TEMPLATE = app
+CONFIG = console
+
+CONFIG += warn_off
+CONFIG -= qt
+
+QMAKE_CXXFLAGS_RELEASE -= -O1
+QMAKE_CXXFLAGS_RELEASE -= -O2
+QMAKE_CXXFLAGS_RELEASE *= -O3
+
+OBJECTS_DIR = build
+
+unix:macx {
+    QMAKE_CXXFLAGS_X86_64 += -mmacosx-version-min=10.7 
+    QMAKE_LFLAGS += -framework GLUT
+    QMAKE_LFLAGS += -framework opengl
+    QMAKE_CXXFLAGS += -Wno-deprecated-declarations
+    CONFIG -= app_bundle
+}
+
+unix:!macx {
+    LIBS += -lGL -lGLU -lglut
+}
 
 
 LIBS += -L/usr/local/include/SFML -lsfml-audio
 QMAKE_CLEAN += -r pacmanx
-
-
-unix:macx {
-    QMAKE_CXXFLAGS_X86_64 += -mmacosx-version-min=10.7 -stdlib=libc++
-    QMAKE_LFLAGS += -framework GLUT
-    QMAKE_LFLAGS += -framework opengl
-    QMAKE_CXXFLAGS += -Wno-deprecated-declarations
-    message(Makefile generated for macOS.)
-    CONFIG -= app_bundle
-
-}
-
-unix:!macx {
-    message(Makefile generated for Linux.)
-    LIBS += -lGL -lGLU -lglut
-}
 
 # Input
 HEADERS+= direcao.hpp \
