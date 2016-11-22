@@ -1,27 +1,21 @@
 # PacMan X
 
-This project is the final assignment for my Computer Graphics course at [UFPB](http://ufpb.br). 
-
-It consists of an implementation of a game that should look and feel like PacMan. 
+This project is the final assignment for my Computer Graphics course at [UFPB](http://ufpb.br). It is a game with the same look and feel of NAMCO's PacMan, but in 3D, using OpenGL.
 
 All rights are reserved to [BANDAI NAMCO](https://www.bandainamcoent.com)™.
 
 ## Prerequisites
 
-You need to install [FREEGLUT](http://freeglut.sourceforge.net/index.php#download) for this project. 
+- [FREEGLUT](http://freeglut.sourceforge.net/index.php#download) - OpenGL Toolkit
+- [SFML](http://www.sfml-dev.org) - Sound Library
 
 ## Authors
 
-- **Fabrício Soares** (me)
+- **Fabrício Soares**(me)
+- **[Yooh Bezerra](https://github.com/nxzx)**
+- **[Wesnydy Ribeiro](https://github.com/wesnydy)**
+
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-- [Professor Christian Pagot](https://www.linkedin.com/in/christian-pagot-664059a3) for his really fresh and insightful lectures.
-
-- [opengl-tutorial](http://www.opengl-tutorial.org/download/) for helping me covering the basics.
-
-  ​
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
