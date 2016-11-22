@@ -38,7 +38,7 @@ void Inimigo::resolvePosicaoAssustado(float ticks) {
     std::vector<DIRECAO> direcoes;
     DIRECAO dirs[] = {cima, baixo, esquerda, direita};
     DIRECAO dir = nenhuma;
-    
+
     int distancia = 0;
     for (int i = 0; i < 4; i++) {
         if (ladrilhoAtual->temSaida(dirs[i])) {
@@ -50,7 +50,7 @@ void Inimigo::resolvePosicaoAssustado(float ticks) {
             }
         }
     }
-    
+
     direcao = dir;
 }
 
@@ -58,9 +58,9 @@ void Inimigo::resolvePosicao(float ticks) {
     std::vector<DIRECAO> direcoes;
     DIRECAO dirs[] = {cima, baixo, esquerda, direita};
     DIRECAO dir = nenhuma;
-    
+
     posicaoAlvo = this->getPosicaoAlvo();
-    
+
     int distancia = 99;
     for (int i = 0; i < 4; i++) {
         if (ladrilhoAtual->temSaida(dirs[i])) {
@@ -72,7 +72,7 @@ void Inimigo::resolvePosicao(float ticks) {
             }
         }
     }
-    
+
     direcao = dir;
 }
 
@@ -124,19 +124,19 @@ void Inimigo::atualiza(float ticks) {
     if (game->getEstado() == parado) {
         ticks = 0;
     }
-    
+
     tempoJogo += ticks;
-    float velocidade = 7.0;
+    float velocidade = 6.0;
     if (estado == FUGINDO) velocidade = 3.5;
     totalTicks += ticks * velocidade;
-    
+
     if (estado == COMIDO) {
         if (ladrilhoAtual->getPosicao().x >= 14 && ladrilhoAtual->getPosicao().x <= 16
             && ladrilhoAtual->getPosicao().y >= 14 && ladrilhoAtual->getPosicao().y <= 16) {
             estado = PERSEGUINDO;
         }
     }
-    
+
     if (estado == FUGINDO && tempoAssustado > 0) {
         tempoAssustado -= ticks;
         if (tempoAssustado <= 0) {
@@ -145,7 +145,7 @@ void Inimigo::atualiza(float ticks) {
     }
     else if (estado != COMIDO) {
         int mod = (int)tempoJogo % 27;
-        
+
         if (mod <= 7) {
             estado = DISPERSO;
         }
@@ -153,7 +153,7 @@ void Inimigo::atualiza(float ticks) {
             estado = PERSEGUINDO;
         }
     }
-    
+
     if (estado == FUGINDO) {
         float distancia = this->distancia(ladrilhoAtual->getPosicao(), jogador->getLadrilhoAtual()->getPosicao());
         if (distancia < 1) {
@@ -161,14 +161,14 @@ void Inimigo::atualiza(float ticks) {
             estado = COMIDO;
         }
     }
-    
+
     if (direcao != nenhuma) {
         pos += ticks * velocidade;
     }
     if (pos >= 1.0) {
         pos--;
         ladrilhoAtual = ladrilhoAtual->getSaida(direcao);
-        
+
         DIRECAO tDirecao = direcao;
         if (estado == FUGINDO) {
             resolvePosicaoAssustado(ticks * velocidade);
@@ -182,7 +182,7 @@ void Inimigo::atualiza(float ticks) {
 
 void Inimigo::processa() {
     ponto centro = ladrilhoAtual->getCentro();
-    
+
     switch (direcao) {
         case direita: centro.x += pos; break;
         case esquerda: centro.x -= pos; break;
@@ -190,17 +190,17 @@ void Inimigo::processa() {
         case baixo: centro.y -= pos; break;
         default: break;
     }
-    
+
     this->setCor();
-    
+
     glPushMatrix();
     glLineWidth(0.5);
-    
+
     float delta = (totalTicks / 3 - (int)(totalTicks / 3));
     float altura = 0.2 * sin(M_PI * delta);
-    
+
     glTranslatef(centro.x, centro.y, -19.4 + altura);
-    
+
     switch (direcao) {
         case baixo:
             glRotatef(90,0,0,1); break;
@@ -211,7 +211,7 @@ void Inimigo::processa() {
         case direita:
             glRotatef(180,0,0,1); break;
     }
-    
+
     if (estado != COMIDO) {
         processaCorpo();
     }
@@ -224,12 +224,12 @@ void Inimigo::processaCorpo() {
     int lats = 24;
     int longs = 24;
     float i, j;
-    
+
     std::vector<ponto> pontos;
-    
+
     for(i = lats/2; i <= lats; i++) {
         double lat0, z0, zr0;
-        
+
         if (i == lats / 2) {
             double d = lats / 2;
             lat0 = M_PI * (-0.5 + (double) (d) / lats);
@@ -241,54 +241,54 @@ void Inimigo::processaCorpo() {
             z0  = sin(lat0);
             zr0 = cos(lat0);
         }
-        
+
         double lat1 = M_PI * (-0.5 + (double) i / lats);
         double z1 = sin(M_PI * (-0.5 + (double) i / lats));
         double zr1 = cos(lat1);
-        
+
         bool impar = true;
         for(j = 0; j <= 360; j += 360.0 / longs) {
             double lng = 2 * M_PI * (double) (j - 1) / 360;
             double x = cos(lng);
             double y = sin(lng);
-            
+
             double ext = 0;
             if (i == lats / 2 && impar) {
                 ext = 0.2;
             }
-            
+
             pontos.push_back(ponto(r * x * zr1, r * y * zr1, r * z1));
             pontos.push_back(ponto(r * x * zr0, r * y * zr0, r * z0 + ext));
-            
+
             impar = !impar;
         }
     }
-    
+
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < pontos.size(); i++) {
         ponto p = pontos[i];
-        
+
         ponto n = normalizaVetor(p);
         glNormal3f(n.x, n.y, n.z);
-        
+
         glVertex3f(p.x, p.y, p.z);
     }
     glEnd();
-    
+
 }
 
 void Inimigo::processaOlhos() {
     glColor3f(1, 1, 1);
     glTranslatef(-0.40, 0.15, 0.1);
     glutSolidSphere(0.25, 8, 8);
-    
+
     glTranslatef(0, -0.3, 0);
     glutSolidSphere(0.25, 8, 8);
-    
+
     glColor3f(0, 0, 0);
     glTranslatef(-0.22, -0.035, 0);
     glutSolidSphere(0.05, 8, 8);
-    
+
     glTranslatef(0, 0.035+0.3, 0);
     glutSolidSphere(0.05, 8, 8);
 }

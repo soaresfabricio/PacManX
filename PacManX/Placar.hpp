@@ -21,8 +21,11 @@
 #include "Observador.hpp"
 #include "Eventos.hpp"
 
+#include <SFML/Audio.hpp>
+
+
 class Placar : public Observador {
-    
+
 private:
     unsigned int pontuacao;
     int pontuacaoFantasmas;
@@ -30,13 +33,28 @@ private:
     std::vector< std::bitset<15> > digitos;
     std::stack<int> numerosPilha;
     float brilho[10][15];
-    
+
+    sf::Sound* som;
+    sf::SoundBuffer* bufferSom;
+
 public:
-    
+
     void reiniciar();
     virtual void onSignal(std::string name);
     void atualiza(float ticks);
     void processa();
     Placar();
-    
+
+    void tocaSom(std::string s) {
+        delete som;
+        delete bufferSom;
+        bufferSom = new sf::SoundBuffer;
+        if (!bufferSom->loadFromFile(s)) {
+            return;
+        }
+        som = new sf::Sound;
+        som->setBuffer(*bufferSom);
+        som->play();
+    }
+
 };

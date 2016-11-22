@@ -24,23 +24,37 @@
 #include "Observador.hpp"
 #include "Eventos.hpp"
 
+#include <chrono>
+#include <thread>
+
+#include <SFML/Audio.hpp>
+
+
 class Game : public Observador {
 private:
+
+
     VisaoJogador visaoJogador;
     Tabuleiro tabuleiro;
     Placar placar;
-    
+
+    int tipoDirecao = 0;
+
     Pinky pinky;
     Blinky blinky;
     Inky inky;
     Clyde clyde;
     std::vector<Inimigo*> inimigos;
-    
+
     char vidas;
     float tempo;
     bool pausado;
     ESTADOGAME estadoJogo;
     void ilumina();
+
+    sf::Sound* som;
+    sf::SoundBuffer* bufferSom;
+
 public:
     Jogador jogador;
     virtual void onSignal(std::string nome);
@@ -53,6 +67,17 @@ public:
     void teclaEspecial(int tecla);
     bool ehPausado();
     ESTADOGAME getEstado();
-    
-    
+
+    void tocaSom(std::string s) {
+        delete som;
+        delete bufferSom;
+        bufferSom = new sf::SoundBuffer;
+        if (!bufferSom->loadFromFile(s)) {
+            return;
+        }
+        som = new sf::Sound;
+        som->setBuffer(*bufferSom);
+        som->play();
+    }
+
 };

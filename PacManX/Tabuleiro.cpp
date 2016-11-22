@@ -10,13 +10,13 @@
 
 
 void Tabuleiro::desenhaParedePequena(){
-    
+
         std::vector<ponto> pontos;
         pontos.push_back(ponto(0.5, 0.30));
         pontos.push_back(ponto(-0.5, 0.30));
         pontos.push_back(ponto(-0.5, -0.30));
         pontos.push_back(ponto(0.5, -0.30));
-    
+
         glBegin(GL_QUADS);
         for (unsigned int i = 0; i < pontos.size(); i++) {
             ponto p = pontos[i];
@@ -24,7 +24,7 @@ void Tabuleiro::desenhaParedePequena(){
             glVertex3f(p.x, p.y, -0.02);
         }
         glEnd ();
-    
+
         glBegin(GL_QUAD_STRIP);
         for (unsigned int i = 0; i < pontos.size(); i++) {
             ponto p = pontos[i];
@@ -33,7 +33,7 @@ void Tabuleiro::desenhaParedePequena(){
             glVertex3f(p.x, p.y, -1.02);
         }
         glEnd ();
-    
+
 }
 
 
@@ -43,7 +43,7 @@ void Tabuleiro::desenhaFimPequeno() {
     pontos.push_back(ponto(-0.3, 0.30));
     pontos.push_back(ponto(-0.3, -0.30));
     pontos.push_back(ponto(0.5, -0.30));
-    
+
     glBegin(GL_QUADS);
     for (unsigned int i = 0; i < pontos.size(); i++) {
         ponto p = pontos[i];
@@ -51,7 +51,7 @@ void Tabuleiro::desenhaFimPequeno() {
         glVertex3f(p.x, p.y, -0.02);
     }
     glEnd ();
-    
+
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < pontos.size(); i++) {
         ponto p = pontos[i];
@@ -72,7 +72,7 @@ void Tabuleiro::desenhaCantoPequeno() {
     pontos.push_back(ponto(0.5, 0.3));
     pontos.push_back(ponto(0.3, 0.3));
     pontos.push_back(ponto(0.3, 0.5));
-    
+
     glBegin(GL_POLYGON);
     for (unsigned int i = 0; i < pontos.size(); i++) {
         ponto p = pontos[i];
@@ -80,8 +80,8 @@ void Tabuleiro::desenhaCantoPequeno() {
         glVertex3f(p.x, p.y, -0.02);
     }
     glEnd ();
-  
-    
+
+
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < pontos.size(); i++) {
         ponto p = pontos[i];
@@ -98,7 +98,7 @@ void Tabuleiro::desenhaParedeGrande() {
     pontos.push_back(ponto(-0.5, 0.149));
     pontos.push_back(ponto(-0.5, -0.15));
     pontos.push_back(ponto(0.5, -0.15));
-    
+
     glBegin(GL_QUADS);
     for (unsigned int i = 0; i < pontos.size(); i++) {
         ponto p = pontos[i];
@@ -111,7 +111,7 @@ void Tabuleiro::desenhaParedeGrande() {
         glVertex3f(p.x, p.y, -0.02);
     }
     glEnd ();
-    
+
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < pontos.size(); i++) {
         ponto p = pontos[i];
@@ -136,8 +136,8 @@ void Tabuleiro::desenhaParedeGrande() {
     }
     glColor3f(0,0,1);
     glEnd ();
-    
-    
+
+
 }
 
 
@@ -146,27 +146,27 @@ void Tabuleiro::desenhaCantoGrande(bool isInset) {
     float x, y;
     float raioGrande = 0.65;
     float raioPequeno = 0.35;
-    
+
     std::vector<ponto> opontos;
     std::vector<ponto> pontos;
     std::vector<ponto> normais;
-    
+
     for(float j = 90; j >= 0; j -= 15)
     {
         float step = 90 - j;
         x = 1 - raioGrande * cos(step * PI/180.0);
         y = 1 - raioGrande * sin(step * PI/180.0);
         pontos.push_back(ponto(x - 0.5, y - 0.5));
-        
+
         x = 1 - raioPequeno * cos(step * PI/180.0);
         y = 1 - raioPequeno * sin(step * PI/180.0);
         opontos.push_back(ponto(x - 0.5, y - 0.5));
-        
+
         x = 0 - cos(step * PI/180.0);
         y = 0 - sin(step * PI/180.0);
         normais.push_back(ponto(x, y));
     }
-    
+
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < pontos.size(); i++) {
         ponto p = pontos[i];
@@ -179,7 +179,7 @@ void Tabuleiro::desenhaCantoGrande(bool isInset) {
         glVertex3f(p.x, p.y, -1.02);
     }
     glEnd ();
-    
+
 
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < pontos.size(); i++) {
@@ -196,8 +196,8 @@ void Tabuleiro::desenhaCantoGrande(bool isInset) {
     }
     glEnd ();
 
-    
-    
+
+
 //     glColor3f(1,1,1);
 //     glBegin(GL_LINES);
 //     for (unsigned int i = 0; i < pontos.size(); i++) {
@@ -207,10 +207,10 @@ void Tabuleiro::desenhaCantoGrande(bool isInset) {
 //     glVertex3f(p.x+(0-n.x), p.y+(0-n.y), -0.02);
 //     }
 //     glEnd ();
-//    
-    
+//
+
     glColor3f(0, 0, 1);
-    
+
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < opontos.size(); i++) {
         ponto p = pontos[i];
@@ -233,7 +233,7 @@ void Tabuleiro::desenhaGrandeInset() {
     pontos.push_back(ponto(-0.5, 0));
     pontos.push_back(ponto(0, -0.5));
     pontos.push_back(ponto(0.5, -0.5));
-    
+
     glBegin(GL_POLYGON);
     for (unsigned int i = 0; i < pontos.size(); i++) {
         ponto p = pontos[i];
@@ -241,7 +241,7 @@ void Tabuleiro::desenhaGrandeInset() {
         glVertex3f(p.x, p.y, -0.02);
     }
     glEnd ();
-    
+
     glBegin(GL_QUAD_STRIP);
     for (unsigned int i = 0; i < pontos.size(); i++) {
         ponto p = pontos[i];
@@ -262,9 +262,9 @@ void Tabuleiro::desenhaGrandeInset() {
 
 void Tabuleiro::desenhaLinhas(float * cor, int x, int y, float px, float py) {
     glLineWidth(1.0);
-    
+
     std::bitset<9> grade;
-    
+
     grade[0] = ehParede(x-1, y-1);
     grade[1] = ehParede(x+0, y-1);
     grade[2] = ehParede(x+1, y-1);
@@ -274,24 +274,24 @@ void Tabuleiro::desenhaLinhas(float * cor, int x, int y, float px, float py) {
     grade[6] = ehParede(x-1, y+1);
     grade[7] = ehParede(x+0, y+1);
     grade[8] = ehParede(x+1, y+1);
-    
+
     float size = 0.50;
-    
+
     float rpx = px;
     float rpy = py;
     px += (1.0 - size) / 2.0;
     py += (1.0 - size) / 2.0;
-    
+
     std::vector<ponto> pontos;
-    
+
     float z = -19;
-    
+
     int contador = 0;
     int desenhar = -1;
     while (true) {
         int tipoDesenho = contador / 4;
         float rotacao = (contador % 4) * 90;
-        
+
         switch (tipoDesenho) {
             case 0:
                 if (!grade[1] && !grade[7] && grade[3] && grade[5]) desenhar = 0;
@@ -314,12 +314,12 @@ void Tabuleiro::desenhaLinhas(float * cor, int x, int y, float px, float py) {
             default:
                 return;
         }
-        
+
         if (desenhar > -1) {
             glPushMatrix();
             glTranslatef(rpx+0.5, rpy+0.5, z);
             glRotatef(rotacao, 0, 0, 1);
-            
+
             switch (desenhar) {
                 case 0:
                     desenhaParedePequena();
@@ -341,7 +341,7 @@ void Tabuleiro::desenhaLinhas(float * cor, int x, int y, float px, float py) {
                     desenhaCantoGrande(true);
                     break;
             }
-            
+
             glRotatef(0 - rotacao, 0, 0, 1);
             glPopMatrix();
             return;
@@ -355,11 +355,11 @@ void Tabuleiro::desenhaLinhas(float * cor, int x, int y, float px, float py) {
 void Tabuleiro::desenhaCanto(float xc, float yc, float z, float start, bool interno) {
     float x,y;
     float raio = 0.5f;
-    
+
     glPushMatrix();
     glTranslatef(xc, yc, z);
     glRotatef(start, 0, 0, 1);
-    
+
     glBegin(GL_LINE_STRIP);
     x = (float)raio * cos(359 * PI/180.0f);
     y = (float)raio * sin(359 * PI/180.0f);
@@ -371,18 +371,18 @@ void Tabuleiro::desenhaCanto(float xc, float yc, float z, float start, bool inte
         glVertex3f(x-0.5, y-0.5, 0);
     }
     glEnd();
-    
-    
+
+
 
     glBegin(GL_POLYGON);
     x = (float)raio * cos(359 * PI/180.0f);
     y = (float)raio * sin(359 * PI/180.0f);
-    
+
     if (!interno) {
         glNormal3f(0, 0, 1);
         glVertex3f(-0.5, 0.5, -0.02);
     }
-    
+
     for(float j = 0; j <= 90; j += 15)
     {
         float step = interno ? j : 90 - j;
@@ -403,11 +403,11 @@ void Tabuleiro::desenhaCanto(float xc, float yc, float z, float start, bool inte
         glVertex3f(0.5, 0.5, -0.02);
     }
     glEnd();
-    
-    
-    
-    
-    
+
+
+
+
+
     glRotatef(-start, 0, 0, 1);
     glPopMatrix();
 }
@@ -420,52 +420,52 @@ void Tabuleiro::criaNormal(float x, float y, float z) {
 
 void Tabuleiro::criaTabuleiro() {
     glNewList(tabuleiroDisplayList, GL_COMPILE);
-    
+
     int alturaTabuleiro = getAltura();
     int larguraTabuleiro = getLargura();
-    
-    
+
+
     glPushMatrix();
     //glLoadIdentity();
     glEnable(GL_TEXTURE_2D);
 
     glBegin(GL_QUADS);
-    
+
     glColor3d(1, 1, 1);
     glTexCoord2f(-4.0f, -4.0f);
-    glVertex3d(-13.5,-14,-20);
-    
+    glVertex3d(-13.5,-14.5,-20);
+
     glTexCoord2f(4.0f, -4.0f);
-    glVertex3d(13.5,-14,-20);
-    
+    glVertex3d(13.5,-14.5,-20);
+
     glTexCoord2f(4.0f, 4.0f);
     glVertex3d(13.5,15.5,-20);
-    
+
     glTexCoord2f(-4.0f, 4.0f);
     glVertex3d(-13.5,15.5,-20);
     glEnd();
-    
+
     glDisable(GL_TEXTURE_2D);
     glPopMatrix();
-    
+
     for (int x = 0; x < larguraTabuleiro; x++) {
         for (int y = 0; y < alturaTabuleiro; y++) {
-            
+
             float * cor = getPixel(x,y);
-            
+
             ponto centro;
             centro.x = (float)x - (largura / 2 - 0.5);
             centro.y = (float)y - (altura / 2 - 0.5);
             centro.z = -19.5;
             ladrilhos[x][y].setCentro(centro);
-            
+
             posicao pos;
             pos.x = x;
             pos.y = y;
             ladrilhos[x][y].setPosicao(pos);
-            
+
             float somaCores = cor[0] + cor[1] + cor[2];
-            
+
             if (cor[0] == 1.0 && somaCores == 1.0) {
                 ladrilhos[x][y].setEnergizer();
             }
@@ -481,12 +481,12 @@ void Tabuleiro::criaTabuleiro() {
                     desenhaParede(x, y, cor);
                 }
                 else {
-                    //desenhaTeto(x, y);
+
                 }
             }
         }
     }
-    
+
     for (int x = 1; x < larguraTabuleiro; x++) {
         for (int y = 1; y < alturaTabuleiro; y++) {
             if (!ehParede(x,y)) {
@@ -501,24 +501,25 @@ void Tabuleiro::criaTabuleiro() {
             }
         }
     }
-    
+
     for (int x = 0; x < larguraTabuleiro; x++) {
         if (!ehParede(x,0) && !ehParede(x, alturaTabuleiro-1)) {
             ladrilhos[x][0].setSaida(cima, &ladrilhos[x][alturaTabuleiro-1]);
             ladrilhos[x][alturaTabuleiro-1].setSaida(baixo, &ladrilhos[x][0]);
         }
     }
-    
+
     for (int y = 1; y < alturaTabuleiro; y++) {
         if (!ehParede(0,y) && !ehParede(larguraTabuleiro - 1, y)) {
             ladrilhos[0][y].setSaida(esquerda, &ladrilhos[larguraTabuleiro - 1][y]);
             ladrilhos[larguraTabuleiro - 1][y].setSaida(direita, &ladrilhos[0][y]);
         }
     }
-    
-    
+
+
     glEndList();
 }
+
 
 
 
@@ -530,9 +531,9 @@ void Tabuleiro::desenhaParede(int x, int y, float * cor) {
 
 void Tabuleiro::carrega() {
 
-    
+
     std::vector<std::string> mapa;
-    
+
     mapa.push_back("BBBBBBBBBBBBBBBBBBBBBBBBBBBB");
     mapa.push_back("BGGGGGGGGGGGGBBGGGGGGGGGGGGB");
     mapa.push_back("BGBBBBGBBBBBGBBGBBBBBGBBBBGB");
@@ -564,39 +565,39 @@ void Tabuleiro::carrega() {
     mapa.push_back("BGBBBBBBBBBBGBBGBBBBBBBBBBGB");
     mapa.push_back("BGGGGGGGGGGGGGGGGGGGGGGGGGGB");
     mapa.push_back("BBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-    
-    
+
+
     tabuleiroDisplayList = glGenLists(1);
-    
+
     largura = 28;
     altura = 31;
-    
+
     for (int x = 0; x < largura; x++) {
         for (int y = 0; y < altura; y++) {
             char letra = mapa[y][x];
-            
+
             float *cor;
             cor = new float[3];
             cor[0] = 0.0;
             cor[1] = 0.0;
             cor[2] = 0.0;
-            
+
             switch (letra) {
                 case 'B': cor[2] = 1.0; break;
                 case 'W': cor[0] = 1.0; cor[1] = 1.0; cor[2] = 1.0; break;
                 case 'R': cor[0] = 1.0; break;
                 case 'G': cor[0] = 1.0; cor[1] = 1.0; break;
             }
-            
+
             pixels[x][altura - (y + 1)] = cor;
         }
     }
-    
-    
-    
-    
+
+
+
+
     criaTabuleiro();
-    
+
 }
 
 int Tabuleiro::getLargura() {
@@ -625,20 +626,20 @@ void Tabuleiro::atualiza(float ticks, float tempo) {
 
 
 void Tabuleiro::processa() {
-   
-    
-    
+
+
+
     //glTranslatef(0,0,-0.5);
     glCallList(tabuleiroDisplayList);
     //glTranslatef(0,0,0.5);
-    
+
     for (int x = 0; x < largura; x++) {
         for (int y = 0; y < altura; y++) {
             ladrilhos[x][y].atualiza(ultimosTicks, this->tempo);
             ladrilhos[x][y].processa();
-        }   
+        }
     }
 
-    
-    
+
+
 }

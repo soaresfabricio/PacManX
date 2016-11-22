@@ -9,6 +9,8 @@
 #include "Jogador.hpp"
 #include "Game.hpp"
 
+
+
 DIRECAO Jogador::getDirecao() {
     return direcao;
 }
@@ -38,6 +40,8 @@ ESTADOJOGADOR Jogador::getEstado() {
 }
 
 void Jogador::setMorrendo() {
+
+
     if (estado != MORRENDO) {
         estado = MORRENDO;
         progressoMorte = 0;
@@ -46,22 +50,22 @@ void Jogador::setMorrendo() {
 }
 
 void Jogador::resolvePosicao(float m) {
-    
+
     if (this->ehOposto(direcao, direcaoDesejada)) {
         ladrilhoAtual = ladrilhoAtual->getSaida(direcao);
         posicao = 1.0-posicao;
         direcao = direcaoDesejada;
     }
-    
+
     if (direcao != nenhuma) posicao += m;
     if (direcao != nenhuma && posicao < 1.0) return;
-    
+
     if (direcao == nenhuma && ladrilhoAtual->temSaida(direcaoDesejada)) {
         direcao = direcaoDesejada;
         ladrilhoAtual->getSaida(direcao)->setCor(1);
         direcaoDesejada = nenhuma;
     }
-    
+
     if (posicao >= 1.0) {
         ladrilhoAtual = ladrilhoAtual->getSaida(direcao);
         ladrilhoAtual->setVisitado();
@@ -100,27 +104,31 @@ void Jogador::atualiza(float ticks) {
 
 void Jogador::processa() {
     ponto posicaoAtual = getPosicao();
-    
+
     glPushMatrix();
-    
+
     glTranslatef(posicaoAtual.x, posicaoAtual.y, -19.5);
-    
+
     float direcaoDesenho = 0;
     switch (direcao) {
         case esquerda:
-            direcaoDesenho = 90; break;
+            direcaoDesenho = 90;
+            break;
         case direita:
-            direcaoDesenho = 270; break;
+            direcaoDesenho = 270;
+            break;
         case cima:
-            direcaoDesenho = 180; break;
+            direcaoDesenho = 180;
+            break;
         case baixo:
-            direcaoDesenho = 0; break;
+            direcaoDesenho = 0;
+            break;
         case nenhuma:
             direcaoDesenho = 0; break;
     }
-    
+
     float limiar = 0;
-    
+
     if (estado == VIVO) {
         limiar = (int)(posicao * 90 + 45) % 90;
         if (limiar > 45) {
@@ -139,7 +147,7 @@ void Jogador::processa() {
         }
         progressoMorte += ultimosTicks * 1;
     }
-    
+
     visaoJogador.setRaio(0.7);
     if (direcao == nenhuma) {
         visaoJogador.processa(direcaoDesenho, 180-25, estado == VIVO);
@@ -147,11 +155,11 @@ void Jogador::processa() {
     else {
         visaoJogador.processa(direcaoDesenho, limiar, estado == VIVO);
     }
-    
+
     if (estado == MORRENDO) {
         explosao.processa(ultimosTicks);
     }
-    
+
     glPopMatrix();
 }
 

@@ -20,6 +20,9 @@
 #include "VisaoJogador.hpp"
 #include "Ator.hpp"
 
+#include <SFML/Audio.hpp>
+
+
 enum ESTADOJOGADOR {
     VIVO,
     MORRENDO,
@@ -32,22 +35,27 @@ private:
     DIRECAO direcaoDesejada;
     ESTADOJOGADOR estado;
     Explosao explosao;
-    
+
     float progressoMorte;
     float totalTicks;
-    
+
     Ladrilho * ladrilhoAtual;
     float posicao;
-    
+
     float ultimosTicks;
-    
+
     void resolvePosicao(float movemento);
     VisaoJogador visaoJogador;
+
+    sf::Sound* som;
+    sf::SoundBuffer* bufferSom;
+
+
 
 public:
     ESTADOJOGADOR getEstado();
     void setMorrendo();
-    
+
     DIRECAO getDirecao();
     void setDirecao(DIRECAO d);
     DIRECAO getDirecaoDesejada();
@@ -55,11 +63,23 @@ public:
     void atualizaDirecao();
     void atualiza(float ticks);
     void processa();
-    
+
     ponto getPosicao();
     void incrementaPosicao(float number);
-    
+
     void setLadrilhoAtual(Ladrilho * l);
-    Ladrilho * getLadrilhoAtual();
+    Ladrilho * getLadrilhoAtual();\
+
+    void tocaSom(std::string s) {
+        delete som;
+        delete bufferSom;
+        bufferSom = new sf::SoundBuffer;
+        if (!bufferSom->loadFromFile(s)) {
+            return;
+        }
+        som = new sf::Sound;
+        som->setBuffer(*bufferSom);
+        som->play();
+    }
 
 };

@@ -76,17 +76,17 @@ void Ladrilho::processa() {
     if (visitado) return;
     
     if (energizer) {
-        glColor4f(1, 1.0/255*184, 1.0/255*151, 0.2 + 0.8*sin(M_PI * (tempoJogo - (int)tempoJogo)));
+        glColor4f(1, 1.0/255*200, 1.0/255*151, 0.2 + 0.8*sin(M_PI * (tempoJogo - (int)tempoJogo)));
         glPushMatrix();
         glTranslatef(px+0.5, py+0.5, -19.5);
-        glutSolidSphere(0.4, 12, 12);
+        glutSolidSphere(0.5, 12, 12);
         glPopMatrix();
     }
     else {
-        glColor4f(1, 1.0/255*184, 1.0/255*151, 1);
+        glColor4f(1, 0, 0, 1);
         glPushMatrix();
         glTranslatef(px+0.5, py+0.5, -19.5);
-        glutSolidSphere(0.08, 4, 4);
+        glutSolidSphere(0.2, 4, 4);
         glPopMatrix();
     }
 //    

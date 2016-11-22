@@ -369,8 +369,10 @@
 		7F4299611D970ADF004F7D01 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"HEADER_SEARCH_PATHS[arch=*]" = "/usr/local/include/**";
 				LIBRARY_SEARCH_PATHS = "/opt/local/lib\n\n";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				"OTHER_LDFLAGS[arch=*]" = "-lsfml-audio";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

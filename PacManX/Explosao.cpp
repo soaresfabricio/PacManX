@@ -10,49 +10,55 @@
 #include "Particula.cpp"
 #include "ParticulaSangue.cpp"
 
+#include <SFML/Audio.hpp>
+
+
 Explosao::Explosao() {
     reiniciar();
 }
 
 void Explosao::reiniciar() {
+
+    tocaSom("explosion.wav");
+
     totalTicks = 0;
     std::vector<Vector> pontos;
     particulas.clear();
     particulasSangue.clear();
-    
+
     double r = 0.7;
     int lats = 24;
     int longs = 24;
-    
+
     for(float i = 1; i <= lats; i++) {
         double lat0 = M_PI * (-0.5 + (double) (i - 1) / lats);
         double z0  = sin(lat0);
         double zr0 = cos(lat0);
-        
+
         double lat1 = M_PI * (-0.5 + (double) i / lats);
         double z1 = sin(lat1);
         double zr1 = cos(lat1);
-        
+
         for(float j = 0; j < 360; j += 360 / longs) {
             double lng = 2 * M_PI * (double) (j - 1) / 360;
             double x = cos(lng);
             double y = sin(lng);
-            
+
             pontos.push_back(Vector(r * x * zr1, r * y * zr1, r * z1));
             pontos.push_back(Vector(r * x * zr0, r * y * zr0, r * z0));
         }
     }
-    
+
     for (unsigned int i = 0; i < pontos.size() - 2; i += 2) {
         int part = ((i % 48) / 6) + 100*(i / (48*4));
-        
+
         if (particulas.find(part) == particulas.end()) {
             particulas[part] = Particula();
             particulas[part].setPosicao(pontos[i]);
         }
-        
+
         std::vector<Vector> polyPoints;
-        
+
         for (int j = 0; j < 4; j++) {
             Vector p = pontos[i + j];
             switch (j) {
@@ -65,7 +71,7 @@ void Explosao::reiniciar() {
             Vector n = normaliza(p);
             particulas[part].adicionaQuadPonto(p, n);
         }
-        
+
         for (int j = 0; j < 4; j++) {
             std::vector<Vector> polyVector;
             polyVector.push_back(polyPoints[(j + 1) % 4]);
@@ -90,13 +96,14 @@ Vector Explosao::normaliza(Vector vector) {
 }
 
 void Explosao::processa(float ticks) {
+
     glPushMatrix();
-    
+
     for (unsigned int i = 0; i < particulasSangue.size(); i++) {
         particulasSangue[i].atualiza(ticks);
         particulasSangue[i].processa();
     }
-    
+
     for (unsigned int i = 0; i < particulas.size(); i++) {
         particulas[i].atualiza(ticks);
         if (particulasSangue.size() < 300 && rand() % 500 == 1) {
@@ -111,7 +118,7 @@ void Explosao::processa(float ticks) {
         }
         particulas[i].processa();
     }
-    
+
     glPopMatrix();
     totalTicks += ticks;
 }

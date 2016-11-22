@@ -11,14 +11,14 @@
 posicao Inky::getPosicaoAlvo() {
     if (estado == DISPERSO) {
         posicao p;
-        p.x = 28;
+        p.x = 20;
         p.y = 0;
         return p;
     }
     if (estado == PERSEGUINDO) {
         posicao pos = jogador->getLadrilhoAtual()->getPosicao();
         posicao posicaoBlinky = blinky->getLadrilhoAtual()->getPosicao();
-        
+
         switch (jogador->getDirecao()) {
             case cima:
                 pos.y += 2; break;
@@ -29,12 +29,12 @@ posicao Inky::getPosicaoAlvo() {
             case direita:
                 pos.x += 2; break;
         }
-        
+
         posicao novaPosicao;
-        
+
         novaPosicao.x = pos.x - (2 * (posicaoBlinky.x - pos.x));
         novaPosicao.y = pos.y - (2 * (posicaoBlinky.y - pos.y));
-        
+
         return novaPosicao;
     }
     return Inimigo::getPosicaoAlvo();

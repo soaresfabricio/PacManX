@@ -4,13 +4,29 @@
 
 TARGET = pacmanx
 
+RESFILES.files = darkmetal.bmp \
+		explosion.wav \
+		swing1.wav \
+		swing2.wav \
+		energizer.wav \
+		eaten.wav \
+		theme.ogg
+RESFILES.path = Contents/Resources
+QMAKE_BUNDLE_DATA += RESFILES
+
+
+LIBS += -L/usr/local/include/SFML -lsfml-audio
+QMAKE_CLEAN += -r pacmanx
+
+
 unix:macx {
     QMAKE_CXXFLAGS_X86_64 += -mmacosx-version-min=10.7 -stdlib=libc++
     QMAKE_LFLAGS += -framework GLUT
     QMAKE_LFLAGS += -framework opengl
     QMAKE_CXXFLAGS += -Wno-deprecated-declarations
-    TEMPLATE = app
     message(Makefile generated for macOS.)
+    CONFIG -= app_bundle
+
 }
 
 unix:!macx {
