@@ -1,0 +1,29 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install SFML
+      run: sudo apt-get install libsfml-dev
+    - name: Install glut
+      run: sudo apt-get install freeglut3-dev
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2
+    - name: Run QMake
+      run: qmake
+    - name: make
+      run: make
+    - name: make check
+      run: make check
+    - name: make distcheck
+      run: make distcheck
