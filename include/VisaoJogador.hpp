@@ -12,7 +12,7 @@
 #include <math.h>
 #include <map>
 #include <vector>
-#include "direcao.hpp"
+#include "Direcao.hpp"
 
 class VisaoJogador{
 private:

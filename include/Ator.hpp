@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include "direcao.hpp"
+#include "Direcao.hpp"
 #include "Observador.hpp"
 
 class Game;

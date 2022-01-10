@@ -14,7 +14,7 @@
 #include <math.h>
 #include <stdio.h>
 
-#include "direcao.hpp"
+#include "Direcao.hpp"
 #include "Eventos.hpp"
 
 

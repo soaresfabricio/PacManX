@@ -15,7 +15,7 @@
 #include <iostream>
 #include <vector>
 
-#include "direcao.hpp"
+#include "Direcao.hpp"
 #include "Ladrilho.hpp"
 
 #include "Ator.hpp"

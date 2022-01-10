@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include "direcao.hpp"
+#include "Direcao.hpp"
 #include "../src/Temporizador.cpp"
 #include "Game.hpp"
 

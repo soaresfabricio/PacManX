@@ -17,7 +17,7 @@
 #include <vector>
 #include <map>
 
-#include "direcao.hpp"
+#include "Direcao.hpp"
 #include "Vector.hpp"
 #include "Particula.hpp"
 #include "ParticulaSangue.hpp"

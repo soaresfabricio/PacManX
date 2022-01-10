@@ -19,7 +19,7 @@
 #include "Clyde.hpp"
 #include "Placar.hpp"
 #include "VisaoJogador.hpp"
-#include "direcao.hpp"
+#include "Direcao.hpp"
 #include "Tabuleiro.hpp"
 #include "Observador.hpp"
 #include "Eventos.hpp"

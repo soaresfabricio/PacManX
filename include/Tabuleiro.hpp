@@ -22,7 +22,7 @@
 // #include <Magick++.h>
 
 #include "Jogador.hpp"
-#include "direcao.hpp"
+#include "Direcao.hpp"
 #include "Ladrilho.hpp"
 
 
