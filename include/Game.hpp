@@ -27,7 +27,6 @@
 #include <chrono>
 #include <thread>
 
-#include <SFML/Audio.hpp>
 
 
 class Game : public Observador {
@@ -53,9 +52,6 @@ private:
     ESTADOGAME estadoJogo;
     void ilumina();
 
-    sf::Sound* som;
-    sf::SoundBuffer* bufferSom;
-
 public:
 
     Jogador jogador;
@@ -70,16 +66,5 @@ public:
     bool ehPausado();
     ESTADOGAME getEstado();
 
-    void tocaSom(std::string s) {
-        delete som;
-        delete bufferSom;
-        bufferSom = new sf::SoundBuffer;
-        if (!bufferSom->loadFromFile(s)) {
-            return;
-        }
-        som = new sf::Sound;
-        som->setBuffer(*bufferSom);
-        som->play();
-    }
 
 };

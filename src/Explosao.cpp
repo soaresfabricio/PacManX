@@ -10,7 +10,6 @@
 #include "Particula.cpp"
 #include "ParticulaSangue.cpp"
 
-#include <SFML/Audio.hpp>
 
 
 Explosao::Explosao() {
@@ -18,8 +17,6 @@ Explosao::Explosao() {
 }
 
 void Explosao::reiniciar() {
-
-    tocaSom("sounds/explosion.wav");
 
     totalTicks = 0;
     std::vector<Vector> pontos;

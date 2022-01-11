@@ -7,7 +7,6 @@ All rights are reserved to [BANDAI NAMCO](https://www.bandainamcoent.com)™.
 ## Prerequisites
 
 - [FREEGLUT](http://freeglut.sourceforge.net/index.php#download) - OpenGL Toolkit
-- [SFML](http://www.sfml-dev.org) - Sound Library
 - [QT's qmake](http://doc.qt.io/qt-4.8/installation.html) - To compile (see below)
 
 ## Compiling and Running

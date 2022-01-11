@@ -22,8 +22,6 @@
 #include "Particula.hpp"
 #include "ParticulaSangue.hpp"
 
-#include <SFML/Audio.hpp>
-
 
 
 class Explosao {
@@ -33,8 +31,7 @@ private:
     std::map<int, Particula> particulas;
     std::vector<ParticulaSangue> particulasSangue;
     Vector normaliza(Vector v);
-    sf::Sound* som;
-    sf::SoundBuffer* bufferSom;
+
 
 
 public:
@@ -42,17 +39,5 @@ public:
     void reiniciar();
     void processa(float ticks);
     bool completo();
-
-    void tocaSom(std::string s) {
-        delete som;
-        delete bufferSom;
-        bufferSom = new sf::SoundBuffer;
-        if (!bufferSom->loadFromFile(s)) {
-            return;
-        }
-        som = new sf::Sound;
-        som->setBuffer(*bufferSom);
-        som->play();
-    }
 
 };

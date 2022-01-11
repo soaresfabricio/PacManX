@@ -1,7 +1,8 @@
 #pragma once
 
 // Estados válido de direção
-enum DIRECAO {
+enum DIRECAO
+{
     nenhuma,
     cima,
     baixo,
@@ -9,30 +10,33 @@ enum DIRECAO {
     esquerda
 };
 
-enum ESTADOGAME {
+enum ESTADOGAME
+{
     executando,
     parado
 };
 
-struct ponto {
+struct ponto
+{
 public:
     float x;
     float y;
     float z;
-    
-    ponto() {
-        
+
+    ponto()
+    {
     }
-    
-    ponto(float _x, float _y, float _z = 0.0) {
+
+    ponto(float _x, float _y, float _z = 0.0)
+    {
         x = _x;
         y = _y;
         z = _z;
     }
 };
 
-
-struct posicao {
+struct posicao
+{
     int x;
     int y;
 };

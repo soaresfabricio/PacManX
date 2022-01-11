@@ -5,8 +5,6 @@
 void Game::carregar(){
 
 
-  // https://soundcloud.com/aidyad/i-m-i-d-pacman-theme-remix
-  tocaSom("sounds/theme.ogg");
 
     vidas = 7;
     visaoJogador.setRaio(0.15);

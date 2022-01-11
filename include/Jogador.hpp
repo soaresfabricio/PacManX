@@ -20,7 +20,6 @@
 #include "VisaoJogador.hpp"
 #include "Ator.hpp"
 
-#include <SFML/Audio.hpp>
 
 
 enum ESTADOJOGADOR {
@@ -46,8 +45,6 @@ private:
 
     void resolvePosicao(float movemento);
 
-    sf::Sound* som;
-    sf::SoundBuffer* bufferSom;
 
 
 
@@ -71,16 +68,6 @@ public:
     void setLadrilhoAtual(Ladrilho * l);
     Ladrilho * getLadrilhoAtual();\
 
-    void tocaSom(std::string s) {
-        delete som;
-        delete bufferSom;
-        bufferSom = new sf::SoundBuffer;
-        if (!bufferSom->loadFromFile(s)) {
-            return;
-        }
-        som = new sf::Sound;
-        som->setBuffer(*bufferSom);
-        som->play();
-    }
+
 
 };

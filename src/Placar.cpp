@@ -8,13 +8,16 @@
 
 #include "../include/Placar.hpp"
 
-Placar::Placar() {
+Placar::Placar()
+{
     Eventos::getInstancia()->adicionar(this, "pellet");
     Eventos::getInstancia()->adicionar(this, "energizer");
     Eventos::getInstancia()->adicionar(this, "ghost_eaten");
 
-    for (int i = 0; i < 10; i++) {
-        for (int j = 0; j < 15; j++) {
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < 15; j++)
+        {
             brilho[i][j] = 0.0;
         }
     }
@@ -33,66 +36,76 @@ Placar::Placar() {
     reiniciar();
 }
 
-void Placar::reiniciar() {
+void Placar::reiniciar()
+{
     pontuacaoFantasmas = 1000;
     pontuacao = 0;
 }
 
-void Placar::onSignal(std::string nome) {
+void Placar::onSignal(std::string nome)
+{
 
-
-    if (nome == "energizer") {
+    if (nome == "energizer")
+    {
         pontuacaoFantasmas = 1000;
         pontuacao += 50;
-
-        tocaSom("sound/energizer.wav");
     }
-    else if (nome == "pellet") {
+    else if (nome == "pellet")
+    {
         pontuacao += 10;
     }
-    else if (nome == "ghost_eaten") {
-        tocaSom("sound/eaten.wav");
+    else if (nome == "ghost_eaten")
+    {
         pontuacao += pontuacaoFantasmas;
         pontuacaoFantasmas += 1000;
     }
 }
 
-void Placar::atualiza(float ticks) {
+void Placar::atualiza(float ticks)
+{
     ultimosTicks = ticks;
 }
 
-void Placar::processa() {
+void Placar::processa()
+{
     glPushMatrix();
     glTranslatef(-2.28, 1.60, -5);
 
     unsigned int pontuacaoAtual = pontuacao;
-    while (pontuacaoAtual > 0) {
+    while (pontuacaoAtual > 0)
+    {
         numerosPilha.push(pontuacaoAtual % 10);
         pontuacaoAtual = (int)pontuacaoAtual / 10;
     }
 
     int tamanhoPilha = numerosPilha.size();
-    for (int d = 0; d < tamanhoPilha; d++) {
+    for (int d = 0; d < tamanhoPilha; d++)
+    {
         std::bitset<15> digito = digitos[(int)numerosPilha.top()];
 
-        if ((int)numerosPilha.top() == 1) {
+        if ((int)numerosPilha.top() == 1)
+        {
             //glTranslatef(-0.20, 0, 0);
         }
 
         int contador = 0;
-        for (int y = 0; y < 5; y++) {
-            for (int x = 0; x < 3; x++) {
-                float brilhoDesejado = 1*digito[contador];
-                float novoBrilho = (1.0 - 10*ultimosTicks) * brilho[d][contador] + 10*ultimosTicks * brilhoDesejado;
-                if (brilhoDesejado > 0.1) {
+        for (int y = 0; y < 5; y++)
+        {
+            for (int x = 0; x < 3; x++)
+            {
+                float brilhoDesejado = 1 * digito[contador];
+                float novoBrilho = (1.0 - 10 * ultimosTicks) * brilho[d][contador] + 10 * ultimosTicks * brilhoDesejado;
+                if (brilhoDesejado > 0.1)
+                {
                     brilho[d][contador] = novoBrilho;
-                    glColor4f(1-novoBrilho, 1, 1-novoBrilho, 1);
+                    glColor4f(1 - novoBrilho, 1, 1 - novoBrilho, 1);
                     glColor4f(1, 0.3, 0.3, 1);
-                    glTranslatef(-x/11.0, y/11.0, 0);
+                    glTranslatef(-x / 11.0, y / 11.0, 0);
                     glutSolidSphere(0.04, 10, 10);
-                    glTranslatef(x/11.0, -y/11.0, 0);
+                    glTranslatef(x / 11.0, -y / 11.0, 0);
                 }
-                else {
+                else
+                {
                     brilho[d][contador] = brilhoDesejado;
                 }
                 contador++;

@@ -25,7 +25,6 @@ unix:macx {
 	LIBS += -lGL -lGLU -lglut
 }
 
-LIBS += -L/usr/local/include/SFML -lsfml-audio
 QMAKE_CLEAN += -r pacmanx
 
 # Input
