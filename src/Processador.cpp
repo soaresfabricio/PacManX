@@ -78,7 +78,9 @@ void Processador::desenha() {
 
     bool pausado = game.ehPausado();
     if (pausado) {
+#ifndef __EMSCRIPTEN__
         sleep(1);
+#endif
         ultimoClock = temporizador.getSegundos();
         return;
     }

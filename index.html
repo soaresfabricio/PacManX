@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PacManX - WebAssembly</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        #canvas {
+            border: 2px solid #333;
+            background-color: #000;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+
+        #status {
+            text-align: center;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 5px;
+            min-width: 300px;
+        }
+
+        #output {
+            max-width: 800px;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #1a1a1a;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            display: none;
+        }
+
+        .spinner {
+            border: 4px solid #333;
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #controls {
+            background-color: #222;
+            padding: 15px;
+            border-radius: 5px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        #controls h2 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        #controls p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .key {
+            display: inline-block;
+            background-color: #444;
+            padding: 4px 8px;
+            border-radius: 3px;
+            margin: 0 2px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>PacManX - 3D First-Person Pac-Man</h1>
+
+    <div id="container">
+        <div id="status">
+            <div class="spinner"></div>
+            <p id="statusText">Loading game...</p>
+        </div>
+
+        <canvas id="canvas" width="1024" height="768"></canvas>
+
+        <div id="controls">
+            <h2>Controls</h2>
+            <p><span class="key">↑</span> <span class="key">↓</span> <span class="key">←</span> <span class="key">→</span> Arrow Keys - Move</p>
+            <p><span class="key">W</span> <span class="key">A</span> <span class="key">S</span> <span class="key">D</span> Alternative Movement</p>
+            <p><span class="key">P</span> Pause Game</p>
+            <p><span class="key">ESC</span> or <span class="key">Q</span> Quit</p>
+        </div>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        var statusElement = document.getElementById('status');
+        var statusText = document.getElementById('statusText');
+        var outputElement = document.getElementById('output');
+        var canvas = document.getElementById('canvas');
+
+        // Focus canvas for keyboard input
+        canvas.addEventListener('click', function() {
+            canvas.focus();
+        });
+
+        var Module = {
+            preRun: [],
+            postRun: [],
+            print: function(text) {
+                if (arguments.length > 1) {
+                    text = Array.prototype.slice.call(arguments).join(' ');
+                }
+                console.log(text);
+                outputElement.innerHTML += text + '\n';
+                outputElement.style.display = 'block';
+                outputElement.scrollTop = outputElement.scrollHeight;
+            },
+            printErr: function(text) {
+                if (arguments.length > 1) {
+                    text = Array.prototype.slice.call(arguments).join(' ');
+                }
+                console.error(text);
+                outputElement.innerHTML += '<span style="color: #ff6666;">' + text + '</span>\n';
+                outputElement.style.display = 'block';
+                outputElement.scrollTop = outputElement.scrollHeight;
+            },
+            canvas: canvas,
+            setStatus: function(text) {
+                if (!Module.setStatus.last) {
+                    Module.setStatus.last = { time: Date.now(), text: '' };
+                }
+                if (text === Module.setStatus.last.text) return;
+
+                var m = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+                var now = Date.now();
+
+                if (m && now - Module.setStatus.last.time < 30) return;
+
+                Module.setStatus.last.time = now;
+                Module.setStatus.last.text = text;
+
+                if (m) {
+                    statusText.textContent = m[1] + ' (' + Math.round(parseFloat(m[2]) * 100) + '%)';
+                } else if (text) {
+                    statusText.textContent = text;
+                } else {
+                    statusElement.style.display = 'none';
+                    canvas.focus();
+                }
+            },
+            totalDependencies: 0,
+            monitorRunDependencies: function(left) {
+                this.totalDependencies = Math.max(this.totalDependencies, left);
+                Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies - left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+            }
+        };
+
+        Module.setStatus('Downloading...');
+
+        window.onerror = function(event) {
+            Module.setStatus('Exception thrown, see JavaScript console');
+            statusElement.style.display = 'block';
+            statusText.textContent = 'Error: See console for details';
+        };
+    </script>
+    <script src="pacmanx.js"></script>
+</body>
+</html>

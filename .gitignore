@@ -1,5 +1,13 @@
 .vscode
 build
+build_wasm
 Makefile
 pacmanx
 .qmake.stash
+
+# WebAssembly build artifacts (in build directory only)
+build_wasm/*.wasm
+build_wasm/*.js
+build_wasm/*.html
+build_wasm/*.data
+build_wasm/*.js.mem
