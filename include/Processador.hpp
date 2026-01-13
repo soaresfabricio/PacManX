@@ -15,43 +15,39 @@
 #include <unistd.h>
 
 #include "Direcao.hpp"
-#include "../src/Temporizador.cpp"
 #include "Game.hpp"
+#include "Temporizador.hpp"
 
 #define ESC 27
 
-enum DIRECAO direcao = nenhuma;
+extern enum DIRECAO direcao;
 
-int janela;
+extern int janela;
 
-float deslocaX = 0.0f;
-float deslocaY = 0.0f;
-int fps = 0;
-int ultimoFps = 0;
+extern float deslocaX;
+extern float deslocaY;
+extern int fps;
+extern int ultimoFps;
 
-const int FPSMAX = 50;
-Game game;
+constexpr int FPSMAX = 50;
+extern Game game;
 
 typedef struct {
-    float x;
-    float y;
-} CIRCULO ;
+  float x;
+  float y;
+} CIRCULO;
 
-
-class Processador{
+class Processador {
 public:
-    static int x;
-    static int lookAt;
-    static Temporizador temporizador;
+  static int x;
+  static int lookAt;
+  static Temporizador temporizador;
 
-    static float ultimoClock;
+  static float ultimoClock;
 
-    static void iniciaGL(int largura, int altura);
-    static void redimensiona(int largura, int altura);
-    static void desenha();
-    static void tecla(unsigned char tecla, int x, int y);
-    static void teclaEspecial(int key, int x, int y);
+  static void iniciaGL(int largura, int altura);
+  static void redimensiona(int largura, int altura);
+  static void desenha();
+  static void tecla(unsigned char tecla, int x, int y);
+  static void teclaEspecial(int key, int x, int y);
 };
-
-Temporizador Processador::temporizador;
-float Processador::ultimoClock;

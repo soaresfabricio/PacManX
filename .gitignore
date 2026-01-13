@@ -1,5 +1,12 @@
 .vscode
-build
+build/
 Makefile
 pacmanx
 .qmake.stash
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+*.cmake
+!CMakeLists.txt
